@@ -661,6 +661,11 @@
           "projectFeed": [ "速度 / mm/min", "Speed / mm/min" ],
           "projectPower": [ "功率 / %", "Power / %" ],
           "projectDownload": [ "下載", "Download" ],
+          "projectSendDevice": [ "送到機台頁", "Send to machine" ],
+          "送到機台頁": [ "送到機台頁", "Send to machine" ],
+          "輸出檔名（SD 限 8 碼英數）": [ "輸出檔名（SD 限 8 碼英數）", "Output filename (SD max 8 ASCII)" ],
+          "SD 儲存檔名（限 8 碼英數）": [ "SD 儲存檔名（限 8 碼英數）", "SD save filename (max 8 ASCII)" ],
+          "已從畫布載入至機台頁，可直接上傳至 SD。": [ "已從畫布載入至機台頁，可直接上傳至 SD。", "Loaded from canvas to Machine tab. Ready to upload to SD." ],
           "projectExportHint": [ "先轉檔並在畫布確認結果，再下載檔案。", "Convert and review the result on the canvas before downloading." ],
           "zeroCalibration": [ "校正零點", "Zero calibration" ],
           "firmwareUpdate": [ "韌體更新", "Firmware update" ],
@@ -7003,7 +7008,19 @@
                     </div>
                     <p id="project-feed-hint" class="field-help"></p></div
                   ><footer class="project-output-footer"
-                    ><div class="project-export-actions">
+                    ><div class="mb-3"
+                      ><label for="project-filename" class="field-label" data-i18n="輸出檔名（SD 限 8 碼英數）"
+                        >輸出檔名（SD 限 8 碼英數）</label
+                      ><input
+                        id="project-filename"
+                        class="form-control"
+                        type="text"
+                        maxlength="8"
+                        value="WORK"
+                        placeholder="WORK"
+                        autocomplete="off"
+                        spellcheck="false"
+                    /></div><div class="project-export-actions">
                       <button
                         id="project-convert"
                         class="action-button primary action-icon"
@@ -7058,6 +7075,36 @@
                           class="sr-only"
                           data-i18n="projectDownload"
                           >下載</span
+                        ></button
+                      >
+                      <button
+                        id="project-send-device"
+                        class="action-button primary action-icon"
+                        type="button"
+                        disabled
+                        data-icon-button="send-device"
+                        aria-label="送到機台頁"
+                        title="送到機台頁"
+                        data-i18n-title="送到機台頁"
+                        data-i18n-aria-label="送到機台頁"
+                        ><svg
+                          aria-hidden="true"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                        >
+                          <path
+                            d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                        ><span
+                          id="project-send-device-label"
+                          class="sr-only"
+                          data-i18n="projectSendDevice"
+                          >送到機台頁</span
                         ></button
                       >
                     </div>
@@ -7144,6 +7191,21 @@
                           type="file"
                           accept=".bmp,.gcode,.nc,.txt,image/bmp,text/plain"
                         />
+                        <div class="mt-3">
+                          <label for="c2-sd-name" class="field-label" data-i18n="SD 儲存檔名（限 8 碼英數）"
+                            >SD 儲存檔名（限 8 碼英數）</label
+                          >
+                          <input
+                            id="c2-sd-name"
+                            class="form-control"
+                            type="text"
+                            maxlength="8"
+                            placeholder="WORK"
+                            autocomplete="off"
+                            spellcheck="false"
+                            disabled
+                          />
+                        </div>
                         <p id="c2-file-info" class="field-help"></p>
                       </div>
                       <div class="upload-actions"
@@ -8860,7 +8922,7 @@
 
         // --- Bitmap & G-code Parsing / Center-Origin 100x100mm Preview ---
         function parseBitmap(bytes) {
-          return window.Cubiio2Core.parseNativeBmp(bytes, previewMachine(), { allow1Bit: false });
+          return window.Cubiio2Core.parseNativeBmp(bytes, previewMachine(), { allow1Bit: true });
         }
         function bitmapPower(bytes, meta, x, topY) {
           const bottomY = meta.height - 1 - topY;
@@ -10047,6 +10109,8 @@
 
           // Upload & SD controls
           byId("c2-file").disabled = busy || uploadRunning;
+          const sdNameEl = byId("c2-sd-name");
+          if (sdNameEl) sdNameEl.disabled = busy || uploadRunning || !localBytes;
           byId("c2-upload").disabled = !canControl || working || !localBytes || !safeSdName(localUploadName);
           const usbBtn = byId("c2-upload-usb");
           if (usbBtn) usbBtn.disabled = busy || uploadRunning || working || !localBytes || !safeSdName(localUploadName) || !navigator.serial;
@@ -10550,9 +10614,40 @@
           await request("STATUS").catch(() => {});
         });
 
-        // --- Local File Selection ---
+        // --- Local File Selection (from File input or directly from Canvas editor) ---
         let fileSelectionEpoch = 0;
-        byId("c2-file").addEventListener("change", async () => {
+        let localSourceName = "";
+        let localExt = "";
+        function updateLocalFileInfo() {
+          if (!localBytes || !localType) {
+            setUiText(byId("c2-file-info"), () => "");
+            return;
+          }
+          if (localType === "bmp" && localMeta) {
+            setUiText(byId("c2-file-info"), () => `${localSourceName} → /CUBIIO/${localUploadName} · ${localMeta.width}×${localMeta.height} px · ${localMeta.bits}-bit · ${localBytes.length.toLocaleString()} bytes`);
+          } else {
+            setUiText(byId("c2-file-info"), () => `${localSourceName} → /CUBIIO/${localUploadName} · ${localBytes.length.toLocaleString()} bytes`);
+          }
+        }
+        function syncSdNameInput() {
+          const sdNameEl = byId("c2-sd-name");
+          if (!sdNameEl) return;
+          if (!localUploadName) {
+            sdNameEl.value = "";
+            return;
+          }
+          const dot = localUploadName.lastIndexOf(".");
+          sdNameEl.value = dot > 0 ? localUploadName.slice(0, dot) : localUploadName;
+        }
+        byId("c2-sd-name")?.addEventListener("input", event => {
+          if (!localType || !localBytes) return;
+          const cleaned = String(event.target.value || "").toUpperCase().replace(/[^A-Z0-9_-]/g, "").slice(0, 8);
+          if (event.target.value !== cleaned) event.target.value = cleaned;
+          localUploadName = cleaned ? `${cleaned}.${localExt || (localType === "bmp" ? "BMP" : "NC")}` : "";
+          updateLocalFileInfo();
+          renderDevice();
+        });
+        async function loadLocalFileObject(file) {
           const selection = ++fileSelectionEpoch;
           window.Cubiio2Core.cancelCompute("file-check");
           activePreviewSource = "local";
@@ -10560,43 +10655,66 @@
           localMeta = null;
           localType = null;
           localUploadName = "";
+          localSourceName = "";
+          localExt = "";
+          syncSdNameInput();
           setFileAlert();
           setUiText(byId("c2-file-info"), () => "");
           byId("c2-upload-progress").style.width = "0%";
-          const file = byId("c2-file").files[0];
           if (!file) {
             renderLocalPreview();
             renderDevice();
-            return;
+            return false;
           }
           try {
             const bytes = new Uint8Array(await file.arrayBuffer());
-            if (selection !== fileSelectionEpoch) return;
+            if (selection !== fileSelectionEpoch) return false;
             if (/\.bmp$/i.test(file.name)) {
               localMeta = parseBitmap(bytes);
               localType = "bmp";
               localUploadName = toFat83Name(file.name, "bmp");
-              setUiText(byId("c2-file-info"), () => `${file.name} → /CUBIIO/${localUploadName} · ${localMeta.width}×${localMeta.height} px · ${localMeta.bits}-bit · ${bytes.length.toLocaleString()} bytes`);
+              localExt = "BMP";
             } else if (/\.(?:gcode|nc|txt)$/i.test(file.name)) {
               await validateGcode(bytes);
-              if (selection !== fileSelectionEpoch) return;
+              if (selection !== fileSelectionEpoch) return false;
               localType = "gcode";
               localUploadName = toFat83Name(file.name, "gcode");
-              setUiText(byId("c2-file-info"), () => `${file.name} → /CUBIIO/${localUploadName} · ${bytes.length.toLocaleString()} bytes`);
+              const dot = localUploadName.lastIndexOf(".");
+              localExt = dot > 0 ? localUploadName.slice(dot + 1) : "NC";
             } else {
               throw makeUiError(() => ui("僅支援 .bmp、.gcode、.nc 或 .txt。"));
             }
-            if (selection !== fileSelectionEpoch) return;
+            if (selection !== fileSelectionEpoch) return false;
+            localSourceName = file.name;
             localBytes = bytes;
+            syncSdNameInput();
+            updateLocalFileInfo();
             renderLocalPreview();
+            renderDevice();
+            return true;
           } catch (error) {
-            if (selection !== fileSelectionEpoch || error?.name === "AbortError") return;
+            if (selection !== fileSelectionEpoch || error?.name === "AbortError") return false;
             setMessage(() => errText(error), true);
             renderLocalPreview();
             setFileAlert(() => errText(error));
+            renderDevice();
+            return false;
           }
-          renderDevice();
-        });
+        }
+        byId("c2-file").addEventListener("change", () => loadLocalFileObject(byId("c2-file").files[0]));
+
+        async function loadLocalBlob(blob, filename) {
+          const file = new File([blob], filename, { type: blob.type || "application/octet-stream" });
+          const ok = await loadLocalFileObject(file);
+          const panel = byId("c2-upload-panel");
+          if (panel) panel.open = true;
+          const navBtn = document.querySelector('[data-route="device"]');
+          if (navBtn) navBtn.click();
+          if (ok) {
+            setMessage(() => ui("已從畫布載入至機台頁，可直接上傳至 SD。"));
+          }
+          return ok;
+        }
 
         // --- BLE Status Polling ---
         setInterval(() => {
@@ -10641,6 +10759,7 @@
           releaseUsbPort,
           updateFirmware,
           listSd: (preferred, opts) => listSd(preferred, opts),
+          loadLocalBlob,
           errorText: errText
         };
 
@@ -10822,7 +10941,7 @@
           $("project-convert").disabled = false;
           $("project-compute-status").hidden = true;
           clearTimeout(conversionTimer);
-          $("project-download").disabled = true;
+          setExportButtons(null);
           $("project-converted-badge").dataset.visible = "false";
           if (message) setUiText($("project-export-status"), () => message);
         }
@@ -11744,13 +11863,147 @@
           });
           return rawText;
         }
-        function downloadBlob(blob, filename) {
+        function resolveProjectFilename(format) {
+          const raw = String($("project-filename")?.value || "");
+          const stem = raw.toUpperCase().replace(/[^A-Z0-9_-]/g, "").slice(0, 8) || "WORK";
+          const ext = format === "svg" ? "svg" : format.startsWith("bmp") ? "bmp" : "nc";
+          return `${stem}.${ext}`;
+        }
+        $("project-filename")?.addEventListener("input", event => {
+          const cleaned = String(event.target.value || "").toUpperCase().replace(/[^A-Z0-9_-]/g, "").slice(0, 8);
+          if (event.target.value !== cleaned) event.target.value = cleaned;
+          if (project.converted) {
+            project.converted.filename = resolveProjectFilename(project.converted.format);
+          }
+        });
+        function setExportButtons(converted) {
+          const ready = Boolean(converted && converted.revision === project.revision);
+          $("project-download").disabled = !ready;
+          const sendBtn = $("project-send-device");
+          if (sendBtn) {
+            const sendable = ready && /\.(?:bmp|gcode|nc|txt)$/i.test(converted.filename || "");
+            sendBtn.disabled = !sendable;
+          }
+        }
+        function isAppleMobileOrBluefy() {
+          const ua = navigator.userAgent || "";
+          return /iPad|iPhone|iPod|Bluefy/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        }
+        function blobToDataUrl(blob) {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result || ""));
+            reader.onerror = () => reject(reader.error || new Error("READ_ERROR"));
+            reader.readAsDataURL(blob);
+          });
+        }
+        async function openMobileExportModal(blob, filename) {
+          let dlg = document.getElementById("c2-mobile-export-dialog");
+          if (!dlg) {
+            dlg = document.createElement("dialog");
+            dlg.id = "c2-mobile-export-dialog";
+            dlg.className = "modal-dialog";
+            dlg.style.maxWidth = "460px";
+            dlg.style.width = "calc(100vw - 24px)";
+            dlg.innerHTML = `
+              <div class="modal-head">
+                <h2 id="c2-mexp-title" style="font-size:1rem;font-weight:700;margin:0">匯出檔案</h2>
+                <button type="button" id="c2-mexp-close" class="action-button">關閉</button>
+              </div>
+              <div id="c2-mexp-body" style="padding:14px 16px;display:flex;flex-direction:column;gap:10px"></div>
+            `;
+            document.body.appendChild(dlg);
+            dlg.querySelector("#c2-mexp-close").addEventListener("click", () => dlg.close());
+          }
+          const isZh = document.documentElement.lang !== "en";
+          dlg.querySelector("#c2-mexp-title").textContent = isZh ? `匯出：${filename}` : `Export: ${filename}`;
+          dlg.querySelector("#c2-mexp-close").textContent = isZh ? "關閉" : "Close";
+          const body = dlg.querySelector("#c2-mexp-body");
+          body.innerHTML = "";
+
+          const note = document.createElement("p");
+          note.className = "field-help";
+          note.textContent = isZh
+            ? `此瀏覽器（如 iOS Bluefy）不支援直接下載檔案（${blob.size.toLocaleString()} bytes）。建議直接點下方「送到機台頁上傳」，免存檔即可傳輸至 Cubiio。`
+            : `This browser (e.g. iOS Bluefy) blocks direct file downloads (${blob.size.toLocaleString()} bytes). Use "Send to machine" below to upload directly without saving.`;
+          body.appendChild(note);
+
+          if (/\.(?:bmp|gcode|nc|txt)$/i.test(filename) && window.Cubiio2Device?.loadLocalBlob) {
+            const sendBtn = document.createElement("button");
+            sendBtn.type = "button";
+            sendBtn.className = "action-button primary";
+            sendBtn.textContent = isZh ? "直接送到機台頁上傳（推薦）" : "Send directly to Machine tab (Recommended)";
+            sendBtn.addEventListener("click", async () => {
+              dlg.close();
+              await window.Cubiio2Device.loadLocalBlob(blob, filename);
+            });
+            body.appendChild(sendBtn);
+          }
+
+          if (/\.bmp$/i.test(filename)) {
+            const dataUrl = await blobToDataUrl(blob);
+            const tip = document.createElement("p");
+            tip.className = "field-help";
+            tip.textContent = isZh ? "或長按下方圖片儲存到相簿：" : "Or long-press the image below to save:";
+            body.appendChild(tip);
+            const img = document.createElement("img");
+            img.src = dataUrl;
+            img.alt = filename;
+            img.style.cssText = "max-width:100%;max-height:240px;object-fit:contain;border:1px solid var(--border);border-radius:8px;background:#fff;align-self:center;";
+            body.appendChild(img);
+          } else {
+            const textContent = await blob.text();
+            const copyBtn = document.createElement("button");
+            copyBtn.type = "button";
+            copyBtn.className = "action-button";
+            copyBtn.textContent = isZh ? "複製全部內容到剪貼簿" : "Copy full text to clipboard";
+            copyBtn.addEventListener("click", async () => {
+              try {
+                await navigator.clipboard.writeText(textContent);
+                copyBtn.textContent = isZh ? "已複製！" : "Copied!";
+              } catch (_) {
+                ta.focus();
+                ta.select();
+                document.execCommand("copy");
+                copyBtn.textContent = isZh ? "已複製！" : "Copied!";
+              }
+            });
+            body.appendChild(copyBtn);
+            const ta = document.createElement("textarea");
+            ta.readOnly = true;
+            ta.value = textContent.length > 80000 ? textContent.slice(0, 80000) + "\n... (truncated preview; Copy copies full file)" : textContent;
+            ta.rows = 6;
+            ta.className = "form-control";
+            ta.style.fontFamily = "monospace";
+            ta.style.fontSize = "12px";
+            body.appendChild(ta);
+          }
+          if (typeof dlg.showModal === "function") dlg.showModal();
+          else dlg.setAttribute("open", "");
+        }
+        async function downloadBlob(blob, filename) {
+          if (isAppleMobileOrBluefy()) {
+            try {
+              const file = new File([blob], filename, { type: blob.type || "application/octet-stream" });
+              if (typeof navigator.share === "function" && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+                await navigator.share({ files: [file], title: filename });
+                return "shared";
+              }
+            } catch (err) {
+              if (err?.name === "AbortError") return "cancelled";
+            }
+            await openMobileExportModal(blob, filename);
+            return "modal";
+          }
           const url = URL.createObjectURL(blob);
           const anchor = document.createElement("a");
           anchor.href = url;
           anchor.download = filename;
+          document.body.appendChild(anchor);
           anchor.click();
+          anchor.remove();
           setTimeout(() => URL.revokeObjectURL(url), 1e4);
+          return "downloaded";
         }
         async function convertProject() {
           project.conversionActivated = true;
@@ -11768,7 +12021,7 @@
             if (current()) projectFeedback(data);
           };
           button.disabled = true;
-          $("project-download").disabled = true;
+          setExportButtons(null);
           setUiText($("project-export-status"), () => format.startsWith("bmp") ? ui("正在轉換 BMP…") : ui("正在建立向量路徑…"));
           await new Promise(resolve => setTimeout(resolve, 20));
           try {
@@ -11793,8 +12046,7 @@
               previewCanvas.width = workerResult.preview.width;
               previewCanvas.height = workerResult.preview.height;
               previewCanvas.getContext("2d").putImageData(new ImageData(workerResult.preview.data, workerResult.preview.width, workerResult.preview.height), 0, 0);
-              const dpiTag = bits === 1 ? "_0p1mm_dither" : "";
-              const filename = `cubiio_${format === "bmp1" ? "dither" : "gray"}.bmp`;
+              const filename = resolveProjectFilename(format);
               converted = {
                 format: format,
                 blob: result.blob,
@@ -11848,7 +12100,7 @@
                 format: format,
                 vector: vector,
                 revision: revision,
-                filename: `cubiio_job.${format === "svg" ? "svg" : "nc"}`,
+                filename: resolveProjectFilename(format),
                 blob: new Blob([ contents ], {
                   type: format === "svg" ? "image/svg+xml" : "text/plain"
                 })
@@ -11859,13 +12111,13 @@
             }
             if (!current()) return;
             project.converted = converted;
-            $("project-download").disabled = false;
+            setExportButtons(converted);
             setUiText($("project-export-status"), () => converted.status());
             renderProject();
           } catch (error) {
             if (token !== conversionToken) return;
             project.converted = null;
-            $("project-download").disabled = true;
+            setExportButtons(null);
             setUiText($("project-export-status"), () => window.Cubiio2Core.explainError(error) || error.message || String(error));
           } finally {
             if (token === conversionToken) {
@@ -11880,7 +12132,7 @@
           window.Cubiio2Core.cancelCompute("project");
           $("project-convert").disabled = false;
           $("project-compute-status").hidden = true;
-          $("project-download").disabled = true;
+          setExportButtons(null);
           $("project-converted-badge").dataset.visible = "false";
           renderProject();
           if (!project.conversionActivated) return;
@@ -12010,10 +12262,21 @@
           renderProject();
         });
         $("project-convert").addEventListener("click", convertProject);
-        $("project-download").addEventListener("click", () => {
+        $("project-download").addEventListener("click", async () => {
           if (!project.converted || project.converted.revision !== project.revision) return;
-          downloadBlob(project.converted.blob, project.converted.filename);
-          setUiText($("project-export-status"), () => ui`已下載 ${project.converted.filename}`);
+          const filename = resolveProjectFilename(project.converted.format);
+          project.converted.filename = filename;
+          const mode = await downloadBlob(project.converted.blob, filename);
+          if (mode === "downloaded" || mode === "shared") {
+            setUiText($("project-export-status"), () => ui`已下載 ${filename}`);
+          }
+        });
+        $("project-send-device")?.addEventListener("click", async () => {
+          if (!project.converted || project.converted.revision !== project.revision) return;
+          if (!window.Cubiio2Device?.loadLocalBlob) return;
+          const filename = resolveProjectFilename(project.converted.format);
+          project.converted.filename = filename;
+          await window.Cubiio2Device.loadLocalBlob(project.converted.blob, filename);
         });
         new ResizeObserver(resizeProjectCanvas).observe(wrap);
         document.addEventListener("cubiio2-theme-change", renderProject);
@@ -12142,7 +12405,7 @@
           $("project-compute-status").hidden = true;
           $("project-convert").disabled = false;
           project.converted = null;
-          $("project-download").disabled = true;
+          setExportButtons(null);
           setUiText($("project-export-status"), () => ui("運算已取消"));
           renderProject();
         });
