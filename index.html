@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="cubiio-ui-revision" content="1.8.4-mega2560" />
-    <meta name="application-version" content="1.8.4" />
-    <meta name="description" content="Cubiio (ATmega2560) single-page BLE control & USB firmware update application" />
+    <meta name="cubiio-ui-revision" content="1.8.5-mega2560-pwa" />
+    <meta name="application-version" content="1.6" />
+    <meta name="description" content="Cubiio (ATmega2560) single-page BLE control, canvas design & USB firmware update PWA" />
+    <meta name="theme-color" content="#85D0D1" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cubiio" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
     <link
       rel="icon"
-      href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDQ4IDIwNDgiPjxyZWN0IHdpZHRoPSIyMDQ4IiBoZWlnaHQ9IjIwNDgiIHJ4PSIxMTgiIGZpbGw9IiMwNjAyMDMiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTU5Ny40MDQgNTA3LjMwOCBDMTU5Ny40NDkgNDk5Ljk0OSAxNTkxLjQxNiA0OTMuNTUgMTU4NC4xMDIgNDg1LjgyNSBMMTUxNS40OTIgNDE3LjIxNCBDMTUwNy4wMzUgNDA4LjY0NCAxNTAxLjQ1OSA0MDMuMTgxIDE0OTMuNzggNDAzLjE4MSBDMTQ4Ny43IDQwMy4xODEgMTQ4Mi4yNjEgNDA3LjY4NCAxNDc2LjI3MyA0MTMuNTggTDk0MS42NTEgOTQ2LjM3MyBMNDM1LjM3IDk0Ni4zNzMgQzQxMS44NzUgOTQ2LjM3MyA0MTAuMDQ3IDk1NS4zNzggNDEwLjA0NyA5NzYuNDA1IEw0MTAuMDQ3IDEwNzMuNTE1IEM0MTAuMDQ3IDEwOTQuNDI3IDQxMi4yODcgMTEwMy43MDYgNDM1LjM3IDExMDMuNzA2IEw5NDAuNzgzIDExMDMuNzA2IEwxNDcyLjc5OSAxNjMzLjc1NyBDMTQ3OS43NDcgMTY0MC43NSAxNDg1LjM2OSAxNjQ0LjgxOSAxNDkxLjU0IDE2NDQuODE5IEMxNDk5LjQwMiAxNjQ0LjgxOSAxNTA1LjIwNyAxNjM5LjQyNSAxNTEyLjkzMiAxNjMxLjYzMSBMMTU4MC45NDggMTU2Mi45MDcgQzE1ODkuOTA3IDE1NTQuNDczIDE1OTQuODkgMTU0OC4yMzQgMTU5NC44OSAxNTQxLjM3NyBDMTU5NC44OSAxNTM2LjAyOSAxNTkxLjQxNiAxNTMwLjI5MyAxNTgzLjQxNiAxNTIyLjQwOCBMMTA4NC45NTEgMTAyNS41NjYgTDE1ODcuNzU5IDUyNC42MzIgQzE1OTMuNTY0IDUxOC41NzYgMTU5Ny40MDQgNTEzLjU0OCAxNTk3LjQwNCA1MDcuMzA4IFoiLz48L3N2Zz4="
+      href="./icon.svg"
+      type="image/svg+xml"
     />
     <title data-i18n="Cubiio V1.6 · 畫布">Cubiio V1.6 · 畫布</title>
 
@@ -458,7 +466,35 @@
           "速度 / mm/min": [ "速度 / mm/min", "Speed / mm/min" ],
           "功率 / %": [ "功率 / %", "Power / %" ],
           "下載": [ "下載", "Download" ],
-          "先轉檔並在畫布確認結果，再下載檔案。": [ "先轉檔並在畫布確認結果，再下載檔案。", "Convert and review the result on the canvas before downloading." ],
+          "上傳至 SD 卡": [ "上傳至 SD 卡", "Upload to SD" ],
+          "設計工具": [ "設計工具", "Design tools" ],
+          "收合工具面板": [ "收合工具面板", "Collapse tools" ],
+          "圖形": [ "圖形", "Shape" ],
+          "畫筆": [ "畫筆", "Brush" ],
+          "形狀": [ "形狀", "Shape" ],
+          "圓／橢圓": [ "圓／橢圓", "Circle / Ellipse" ],
+          "正多角形": [ "正多角形", "Regular polygon" ],
+          "矩形": [ "矩形", "Rectangle" ],
+          "邊數": [ "邊數", "Sides" ],
+          "加入圖形": [ "加入圖形", "Add shape" ],
+          "請輸入有效尺寸（1～100 mm）與邊數（3～64）。": [ "請輸入有效尺寸（1～100 mm）與邊數（3～64）。", "Enter valid size (1–100 mm) and sides (3–64)." ],
+          "開始畫筆": [ "開始畫筆", "Start brush" ],
+          "結束畫筆": [ "結束畫筆", "Finish brush" ],
+          "點擊「開始畫筆」後即可在畫布自由繪製向量線條；按 Esc 或切換分頁可結束畫筆。": [ "點擊「開始畫筆」後即可在畫布自由繪製向量線條；按 Esc 或切換分頁可結束畫筆。", "Click Start brush to sketch vector strokes on canvas; press Esc or switch tabs to finish." ],
+          "畫筆模式：拖曳繪製線條（Esc 結束）": [ "畫筆模式：拖曳繪製線條（Esc 結束）", "Brush mode: drag to draw (Esc to exit)" ],
+          "匯入字型檔案（.ttf / .otf / .woff / .woff2）": [ "匯入字型檔案（.ttf / .otf / .woff / .woff2）", "Import font file (.ttf / .otf / .woff / .woff2)" ],
+          "系統字型": [ "系統字型", "System font" ],
+          "已匯入字型：": [ "已匯入字型：", "Imported font: " ],
+          "字型檔案無法載入。": [ "字型檔案無法載入。", "Could not load font file." ],
+          "座標基準": [ "座標基準", "Position reference" ],
+          "中心": [ "中心", "Center" ],
+          "左下（外框）": [ "左下（外框）", "Lower-left (bounds)" ],
+          "開啟輸出分頁後會自動即時轉檔，可直接下載或上傳至 SD 卡。": [ "開啟輸出分頁後會自動即時轉檔，可直接下載或上傳至 SD 卡。", "Output updates live automatically; download or upload directly to SD." ],
+          "連接 Cubiio 後可上傳至 SD 卡。": [ "連接 Cubiio 後可上傳至 SD 卡。", "Connect Cubiio to upload to SD card." ],
+          "SVG 僅供下載；請改選 BMP 或 G-code 上傳至 SD 卡。": [ "SVG 僅供下載；請改選 BMP 或 G-code 上傳至 SD 卡。", "SVG is download-only; choose BMP or G-code to upload to SD." ],
+          "正在上傳至 SD…": [ "正在上傳至 SD…", "Uploading to SD…" ],
+          "取消上傳": [ "取消上傳", "Cancel upload" ],
+          "先轉檔並在畫布確認結果，再下載檔案。": [ "開啟輸出分頁後會自動即時轉檔，可直接下載或上傳至 SD 卡。", "Output updates live automatically; download or upload directly to SD." ],
           "校正零點": [ "校正零點", "Zero calibration" ],
           "韌體更新": [ "韌體更新", "Firmware update" ],
           "工程設定": [ "工程設定", "Engineering settings" ],
@@ -555,6 +591,11 @@
           "已暫停": [ "已暫停", "Paused" ],
           "溫度保護暫停": [ "溫度保護暫停", "Over-temperature pause" ],
           "檔案上傳中": [ "檔案上傳中", "Uploading file" ],
+          "檔案上傳進度": [ "檔案上傳進度", "File upload progress" ],
+          "雷射安全等級": [ "雷射安全等級", "Laser safety class" ],
+          "設定密碼": [ "設定密碼", "Set PIN" ],
+          "Class 1（護目罩已安裝）": [ "Class 1（護目罩已安裝）", "Class 1 (Shield installed)" ],
+          "Class 4（未裝護目罩，加工需驗證 4 位密碼）": [ "Class 4（未裝護目罩，加工需驗證 4 位密碼）", "Class 4 (No shield; 4-digit PIN required)" ],
           "處理中": [ "處理中", "Processing" ],
           "警告／錯誤": [ "警告／錯誤", "Warning / Error" ],
           "已停止": [ "已停止", "Stopped" ],
@@ -993,6 +1034,162 @@
           return null;
         }
 
+        const drawing = (() => {
+          function distSqSeg(p, a, b) {
+            let x = a.x, y = a.y, dx = b.x - x, dy = b.y - y;
+            if (dx || dy) {
+              const t = Math.max(0, Math.min(1, ((p.x - x) * dx + (p.y - y) * dy) / (dx * dx + dy * dy)));
+              x += dx * t;
+              y += dy * t;
+            }
+            return (p.x - x) ** 2 + (p.y - y) ** 2;
+          }
+          function simplify(points, tolerance = 0.25) {
+            if (!Array.isArray(points) || points.length <= 2) return points ? points.slice() : [];
+            const keep = new Uint8Array(points.length);
+            keep[0] = keep[points.length - 1] = 1;
+            const stack = [0, points.length - 1];
+            const limit = tolerance * tolerance;
+            while (stack.length) {
+              const high = stack.pop(), low = stack.pop();
+              let max = 0, idx = low;
+              for (let i = low + 1; i < high; i++) {
+                const d = distSqSeg(points[i], points[low], points[high]);
+                if (d > max) { max = d; idx = i; }
+              }
+              if (max > limit) {
+                keep[idx] = 1;
+                stack.push(low, idx, idx, high);
+              }
+            }
+            return points.filter((_, i) => keep[i]);
+          }
+          function normalize(paths, closed) {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            for (const path of paths) {
+              for (const p of path) {
+                if (p.x < minX) minX = p.x;
+                if (p.y < minY) minY = p.y;
+                if (p.x > maxX) maxX = p.x;
+                if (p.y > maxY) maxY = p.y;
+              }
+            }
+            const rawW = maxX - minX, rawH = maxY - minY;
+            const width = Math.max(1, rawW);
+            const height = Math.max(1, rawH);
+            const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+            const normalized = paths.map(path => {
+              const pts = path.map(p => ({
+                x: rawW > 1e-6 ? (p.x - cx) / rawW : 0,
+                y: rawH > 1e-6 ? (p.y - cy) / rawH : 0
+              }));
+              pts.closed = Boolean(path.closed ?? closed);
+              return pts;
+            });
+            return { x: cx, y: cy, width, height, paths: normalized };
+          }
+          function shape(kind, width, height, sides = 6) {
+            const w = Number(width), h = Number(height);
+            if (!Number.isFinite(w) || !Number.isFinite(h) || w < 1 || h < 1) return null;
+            const pts = [];
+            if (kind === "rectangle") {
+              pts.push(
+                { x: -0.5, y: -0.5 },
+                { x: 0.5, y: -0.5 },
+                { x: 0.5, y: 0.5 },
+                { x: -0.5, y: 0.5 },
+                { x: -0.5, y: -0.5 }
+              );
+              pts.closed = true;
+              return { width: w, height: h, paths: [pts], name: "矩形" };
+            }
+            if (kind === "ellipse") {
+              const segments = Math.max(36, Math.min(128, Math.round(Math.max(w, h) * 2)));
+              for (let i = 0; i <= segments; i++) {
+                const a = (i / segments) * Math.PI * 2;
+                pts.push({ x: 0.5 * Math.cos(a), y: 0.5 * Math.sin(a) });
+              }
+              pts.closed = true;
+              return { width: w, height: h, paths: [pts], name: Math.abs(w - h) < 0.05 ? "圓形" : "橢圓" };
+            }
+            const n = Math.round(Number(sides));
+            if (!Number.isFinite(n) || n < 3 || n > 64) return null;
+            const raw = [];
+            for (let i = 0; i <= n; i++) {
+              const a = -Math.PI / 2 + (i / n) * Math.PI * 2;
+              raw.push({ x: Math.cos(a), y: Math.sin(a) });
+            }
+            raw.closed = true;
+            const norm = normalize([raw], true);
+            return { width: w, height: h, paths: norm.paths, name: `${n} 邊形` };
+          }
+          function stroke(points, tolerance = 0.22) {
+            if (!Array.isArray(points) || points.length < 2) return null;
+            const simplified = simplify(points, tolerance);
+            if (simplified.length < 2) return null;
+            let len = 0;
+            for (let i = 1; i < simplified.length; i++) {
+              len += Math.hypot(simplified[i].x - simplified[i - 1].x, simplified[i].y - simplified[i - 1].y);
+            }
+            if (len < 0.8) return null;
+            const closed = simplified.length >= 4 && Math.hypot(simplified[0].x - simplified.at(-1).x, simplified[0].y - simplified.at(-1).y) <= Math.max(1.2, tolerance * 4);
+            if (closed) simplified[simplified.length - 1] = { ...simplified[0] };
+            simplified.closed = closed;
+            // Convert world coords (Y up) into local canvas coords (Y down relative to center)
+            const localYDown = simplified.map(p => ({ x: p.x, y: -p.y }));
+            localYDown.closed = closed;
+            const norm = normalize([localYDown], closed);
+            return {
+              x: norm.x,
+              y: -norm.y,
+              width: norm.width,
+              height: norm.height,
+              paths: norm.paths
+            };
+          }
+          return { shape, stroke, simplify };
+        })();
+
+        const localFonts = (() => {
+          const FALLBACK_FONTS = [
+            "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", "Heiti TC", "PMingLiU", "DFKai-SB",
+            "Arial", "Helvetica", "Georgia", "Times New Roman", "Verdana", "Trebuchet MS", "Courier New", "Impact"
+          ];
+          async function load() {
+            const seen = new Set();
+            const result = [];
+            const add = name => {
+              const clean = String(name || "").trim();
+              if (!clean || seen.has(clean.toLowerCase())) return;
+              seen.add(clean.toLowerCase());
+              result.push(clean);
+            };
+            try {
+              const probe = document.createElement("canvas").getContext("2d");
+              if (probe) {
+                const sample = "AaBbCc中文字體0123456789";
+                const measure = fam => {
+                  probe.font = `32px ${fam}`;
+                  return probe.measureText(sample).width;
+                };
+                const baseMono = measure("monospace");
+                const baseSerif = measure("serif");
+                const baseSans = measure("sans-serif");
+                for (const name of FALLBACK_FONTS) {
+                  const quoted = JSON.stringify(name);
+                  if (measure(`${quoted}, monospace`) !== baseMono ||
+                      measure(`${quoted}, serif`) !== baseSerif ||
+                      measure(`${quoted}, sans-serif`) !== baseSans) {
+                    add(name);
+                  }
+                }
+              }
+            } catch (_) {}
+            return result;
+          }
+          return { load };
+        })();
+
         const core = {
           dictionary,
           text,
@@ -1010,6 +1207,8 @@
           validateBmpDimensions,
           parseNativeBmp,
           explainError,
+          drawing,
+          localFonts,
           WORKSPACE
         };
         window.Cubiio2Core = core;
@@ -3125,7 +3324,11 @@
         --control: #c7d0d0;
         --text: #131616;
         --muted: #5b6262;
-        --accent: #12677a;
+        --brand: #85d0d1;
+        --brand-hover: #6fc1c3;
+        --brand-border: #59aeb2;
+        --brand-ink: #07282c;
+        --accent: #1b8c94;
         --danger: #a52127;
       }
       .dark {
@@ -3138,7 +3341,11 @@
         --control: #444a4a;
         --text: #fff;
         --muted: #b4baba;
-        --accent: #55b9cd;
+        --brand: #85ced1;
+        --brand-hover: #9bd9dc;
+        --brand-border: #68b8bc;
+        --brand-ink: #062124;
+        --accent: #85d0d1;
         --danger: #ff8494;
       }
       html {
@@ -3458,15 +3665,49 @@
         transform: translateY(1px);
       }
       .action-button.primary {
-        background: var(--text);
-        border-color: var(--text);
-        color: var(--surface);
+        background: var(--brand);
+        border-color: var(--brand-border);
+        color: var(--brand-ink);
+        font-weight: 600;
       }
       .action-button.primary:is(:hover, :active, :focus-visible):not(:disabled) {
-        background: var(--text);
-        border-color: var(--text);
-        color: var(--surface);
-        opacity: 0.9;
+        background: var(--brand-hover);
+        border-color: var(--brand-border);
+        color: var(--brand-ink);
+      }
+      .action-button.start-green {
+        background: #16a34a;
+        border-color: #15803d;
+        color: #ffffff;
+        font-weight: 600;
+      }
+      .action-button.start-green:is(:hover, :active, :focus-visible):not(:disabled) {
+        background: #15803d;
+        border-color: #166534;
+        color: #ffffff;
+      }
+      .dark .action-button.start-green {
+        background: #16a34a;
+        border-color: #22c55e;
+        color: #ffffff;
+      }
+      .dark .action-button.start-green:is(:hover, :active, :focus-visible):not(:disabled) {
+        background: #15803d;
+        border-color: #16a34a;
+        color: #ffffff;
+      }
+      #c2-connect {
+        background: var(--brand);
+        border: 1px solid var(--brand-border);
+        color: var(--brand-ink);
+        font-weight: 600;
+      }
+      #c2-connect:hover:not(:disabled) {
+        background: var(--brand-hover);
+        color: var(--brand-ink);
+      }
+      #c2-connect:disabled {
+        opacity: 0.5;
       }
       .maintenance-choice-grid
         button[aria-pressed="true"]:is(:hover, :active, :focus-visible):not(:disabled),
@@ -3474,9 +3715,9 @@
       .tool-button[aria-pressed="true"]:is(:hover, :active, :focus-visible):not(:disabled):not(
           :disabled
         ) {
-        background: var(--text);
-        border-color: var(--text);
-        color: var(--surface);
+        background: var(--brand);
+        border-color: var(--brand-border);
+        color: var(--brand-ink);
       }
       .status-command-row {
         align-items: center;
@@ -3791,7 +4032,7 @@
         padding-right: 0.75rem;
       }
       progress {
-        accent-color: #527de0;
+        accent-color: #4ca9ae;
         appearance: none;
         background: var(--control);
         border: 0;
@@ -3806,22 +4047,22 @@
         border-radius: 999px;
       }
       progress::-webkit-progress-value {
-        background: linear-gradient(90deg, #5266cf, #5389ec);
+        background: linear-gradient(90deg, #59aeb2, #85d0d1);
         border-radius: 999px;
         transition: width 0.4s ease;
       }
       progress::-moz-progress-bar {
-        background: linear-gradient(90deg, #5266cf, #5389ec);
+        background: linear-gradient(90deg, #59aeb2, #85d0d1);
         border-radius: 999px;
       }
       .dark progress {
-        accent-color: #8caaff;
+        accent-color: #85d0d1;
       }
       .dark progress::-webkit-progress-value {
-        background: linear-gradient(90deg, #8794ef, #80b5ff);
+        background: linear-gradient(90deg, #5fb4b8, #85d0d1);
       }
       .dark progress::-moz-progress-bar {
-        background: linear-gradient(90deg, #8794ef, #80b5ff);
+        background: linear-gradient(90deg, #5fb4b8, #85d0d1);
       }
       #c2-job-timing {
         max-width: 900px;
@@ -3843,7 +4084,7 @@
         border-radius: 9999px;
       }
       .progress-fill {
-        background: linear-gradient(90deg, #5266cf, #5389ec);
+        background: linear-gradient(90deg, #59aeb2, #85d0d1);
         height: 100%;
         transition-duration: 0.15s;
         transition-property: width;
@@ -4282,28 +4523,20 @@
       }
       .project-editor-layout {
         display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 16px;
+        grid-template-columns: minmax(0, 1fr);
       }
-      @media (min-width: 768px) {
+      @media (min-width: 901px) {
         .project-editor-layout {
           align-items: flex-start;
-          grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
+          grid-template-columns: minmax(0, 1fr) 340px;
         }
       }
       .project-stage {
         background: var(--raised);
         border: 1px solid var(--border);
-        border-radius: 0.5rem;
+        border-radius: 12px;
         overflow: hidden;
-      }
-      @media (max-width: 767px) {
-        #c2-preview-canvas-wrap,
-        #project-canvas-wrap {
-          aspect-ratio: var(--workspace-ratio, 100/100);
-          height: auto !important;
-          min-height: 0;
-        }
       }
       .project-canvas-wrap {
         height: 420px;
@@ -4315,9 +4548,9 @@
           height: 520px;
         }
       }
-      @media (min-width: 768px) {
+      @media (min-width: 901px) {
         .project-canvas-wrap {
-          height: min(68vh, 680px);
+          height: min(68vh, 660px);
         }
       }
       #c2-preview-canvas,
@@ -4336,69 +4569,80 @@
       #project-editor-canvas[data-cursor="grabbing"] {
         cursor: grabbing;
       }
+      #project-editor-canvas[data-cursor="crosshair"] {
+        cursor: crosshair;
+      }
       .project-stage-footer {
         align-items: center;
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
         font-size: 0.75rem;
-        gap: 0.75rem;
-        justify-content: space-between;
+        gap: 0.5rem;
         line-height: 1rem;
-        min-height: 2.5rem;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        min-height: 2.75rem;
+        padding: 4px 12px;
         --tw-numeric-spacing: tabular-nums;
         background: var(--surface);
-        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
         color: var(--muted);
         font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure)
           var(--tw-numeric-spacing) var(--tw-numeric-fraction);
       }
-      .project-stage-footer .canvas-bounds {
-        flex: 1 1 0%;
-        min-width: 0;
+      .project-stage-footer > :first-child {
         overflow: hidden;
-        text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+      .project-stage-footer > :last-child {
+        justify-self: end;
       }
       .project-tool-header {
         align-items: center;
         background: var(--raised);
+        border-bottom: 1px solid var(--border);
         display: flex;
-        gap: 12px;
-        justify-content: space-between;
-        padding: 18px 18px 14px;
+        gap: 8px;
+        justify-content: flex-start;
+        padding: 12px 14px;
       }
       .project-tool-header h2 {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600;
         margin: 0;
       }
-      .project-tool-header p {
-        color: var(--muted);
-        font-size: 11px;
-        line-height: 1.5;
-        margin: 4px 0 0;
+      .project-close-tool {
+        height: 30px;
+        min-height: 30px;
+        padding: 0;
+        width: 30px;
+        font-size: 18px;
+        line-height: 1;
       }
       .project-history-controls {
         display: flex;
         flex-shrink: 0;
         gap: 6px;
+        justify-self: center;
       }
       .history-icon {
-        height: 38px;
-        min-height: 38px;
-        padding: 8px;
-        width: 38px;
+        height: 32px;
+        min-height: 32px;
+        padding: 6px;
+        width: 32px;
       }
       .history-icon svg {
-        height: 20px;
-        width: 20px;
+        height: 16px;
+        width: 16px;
       }
       .project-controls {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
         display: flex;
         flex-direction: column;
-        max-height: min(78dvh, 740px);
+        max-height: min(76dvh, 720px);
+        min-width: 0;
+        overflow: hidden;
       }
       .project-tabs,
       .project-tool-header {
@@ -4408,29 +4652,91 @@
         flex: 1;
         min-height: 0;
         overflow-y: auto;
+        padding: 14px;
       }
       .project-panel[hidden] {
         display: none !important;
       }
       .project-tabs {
+        border-bottom: 1px solid var(--border);
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         overflow: visible;
       }
+      .project-controls[data-panel-open="false"] .project-tabs {
+        border-bottom: 0;
+      }
       .project-tab {
-        font-size: 12px;
-        gap: 6px;
+        align-items: center;
+        color: var(--muted);
+        display: flex;
+        flex-direction: column;
+        font-size: 11px;
+        font-weight: 500;
+        gap: 4px;
         justify-content: center;
+        line-height: 1.1;
+        min-height: 52px;
         min-width: 0;
-        padding: 14px 5px;
+        padding: 8px 2px;
+        position: relative;
       }
       .project-tab span {
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
       }
       .project-tab svg {
         flex-shrink: 0;
-        height: 16px;
-        width: 16px;
+        height: 17px;
+        width: 17px;
+      }
+      .project-tab:hover,
+      .project-tab[aria-selected="true"] {
+        color: var(--text);
+      }
+      .project-tab[aria-selected="true"] {
+        background: color-mix(in srgb, var(--brand) 16%, transparent);
+      }
+      .project-tab[aria-selected="true"]:after {
+        background: var(--brand-border);
+        bottom: 0;
+        content: "";
+        height: 2px;
+        left: 6px;
+        position: absolute;
+        right: 6px;
+      }
+      .project-font-row {
+        display: grid;
+        gap: 6px;
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+      .project-font-plus {
+        min-height: 2.5rem;
+        min-width: 2.5rem;
+        padding: 0 10px;
+        font-size: 18px;
+        line-height: 1;
+      }
+      .project-output-name-row {
+        align-items: center;
+        display: grid;
+        gap: 6px;
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+      .project-output-suffix {
+        background: var(--raised);
+        border: 1px solid var(--border);
+        border-radius: 0.375rem;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        line-height: 2.35rem;
+        padding: 0 10px;
+        user-select: none;
       }
       .project-panel[data-project-panel="output"] {
         display: flex;
@@ -4442,14 +4748,14 @@
         flex: 1;
         min-height: 0;
         overflow-y: auto;
-        padding: 18px;
+        padding: 14px;
       }
       .project-output-footer {
         background: var(--surface);
         border-top: 1px solid var(--border);
         box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.035);
         flex-shrink: 0;
-        padding: 14px 18px;
+        padding: 12px 14px;
       }
       .project-output-footer .project-export-actions {
         margin-top: 0;
@@ -4475,12 +4781,29 @@
         height: 18px;
         width: 18px;
       }
+      .project-transfer {
+        background: var(--raised);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 10px;
+      }
+      .project-transfer-head {
+        align-items: center;
+        display: flex;
+        font-size: 12px;
+        gap: 8px;
+        justify-content: space-between;
+      }
       .project-empty {
         background: var(--raised);
         border: 1px dashed var(--border);
         display: grid;
         line-height: 1.6;
-        min-height: 90px;
+        min-height: 76px;
         place-items: center;
         text-align: center;
       }
@@ -4488,82 +4811,30 @@
         background: var(--raised);
         border: 1px dashed var(--border);
         border-radius: 10px;
-        padding: 14px;
+        padding: 12px;
       }
-      @media (min-width: 768px) {
-        .project-controls {
-          max-height: min(78dvh, 740px) !important;
-          overflow: hidden !important;
+      @media (max-aspect-ratio: 4/5), (max-width: 900px) {
+        .project-editor-layout {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
         }
-      }
-      @media (max-width: 767px) {
-        .project-output-scroll,
+        .project-stage {
+          border-bottom: 0;
+          border-radius: 12px 12px 0 0;
+        }
+        .project-controls {
+          border-radius: 0 0 12px 12px;
+          max-height: none;
+        }
         .project-tool-header {
-          padding: 14px;
+          display: none;
         }
-        .project-output-footer {
-          padding: 12px 14px;
-        }
-        .project-controls {
-          max-height: 76dvh;
-        }
-      }
-      .project-controls {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        min-width: 0;
-        overflow: hidden;
-      }
-      .project-tabs {
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-      .project-tabs::-webkit-scrollbar {
-        display: none;
-      }
-      .project-tab {
-        align-items: center;
-        color: var(--muted);
-        display: inline-flex;
-        font-size: 0.75rem;
-        font-weight: 500;
-        gap: 0.5rem;
-        line-height: 1rem;
-        min-height: 2.75rem;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        position: relative;
-      }
-      .project-tab,
-      .project-tab svg {
-        flex-shrink: 0;
-      }
-      .project-tab svg {
-        height: 1rem;
-        width: 1rem;
-      }
-      .project-tab:hover,
-      .project-tab[aria-selected="true"] {
-        color: var(--text);
-      }
-      .project-tab[aria-selected="true"]:after {
-        background: var(--accent);
-        bottom: 0;
-        content: "";
-        height: 0.125rem;
-        left: 0.75rem;
-        position: absolute;
-        right: 0.75rem;
-      }
-      .project-panel {
-        padding: 1rem;
-      }
-      @media (min-width: 768px) {
-        .project-panel {
-          padding: 1.25rem;
+        #c2-preview-canvas-wrap,
+        #project-canvas-wrap {
+          aspect-ratio: var(--workspace-ratio, 100/100);
+          height: auto !important;
+          min-height: 0;
         }
       }
       .project-field-grid {
@@ -4656,12 +4927,21 @@
       }
       .project-converted-badge {
         align-items: center;
-        color: var(--muted);
+        background: color-mix(in srgb, var(--surface) 92%, transparent);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        bottom: 8px;
+        color: var(--text);
         display: none;
         font-size: 0.75rem;
-        gap: 0.5rem;
+        font-weight: 500;
+        gap: 0.45rem;
+        left: 10px;
         line-height: 1rem;
-        margin-left: auto;
+        padding: 4px 10px;
+        pointer-events: none;
+        position: absolute;
+        z-index: 2;
       }
       .project-converted-badge[data-visible="true"] {
         display: inline-flex;
@@ -5561,10 +5841,7 @@
         overflow-wrap: anywhere;
       }
       .device-workflow {
-        align-items: start;
-        display: grid;
-        gap: 24px;
-        grid-template-columns: minmax(0, 1fr) 252px;
+        display: block;
       }
       .workflow-steps {
         display: grid;
@@ -5575,6 +5852,15 @@
         padding: 0;
       }
       .workflow-step {
+        min-width: 0;
+      }
+      .device-sd-preview-row {
+        align-items: start;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: minmax(0, 1fr) clamp(148px, 40%, 260px);
+      }
+      .device-sd-column {
         min-width: 0;
       }
       .workflow-head {
@@ -5798,10 +6084,15 @@
         min-height: 0;
       }
       .device-thumbnail .project-stage-footer {
+        border-bottom: 0;
+        border-top: 1px solid var(--border);
+        display: flex;
         flex-wrap: wrap;
         font-size: 10px;
-        gap: 6px;
-        padding: 8px;
+        gap: 4px 6px;
+        justify-content: space-between;
+        min-height: auto;
+        padding: 6px 8px;
       }
       .device-thumbnail .form-control {
         font-size: 11px;
@@ -5837,27 +6128,31 @@
         color: var(--accent);
       }
       @media (max-width: 1100px) {
-        .device-workflow {
-          gap: 16px;
-          grid-template-columns: minmax(0, 1fr) 208px;
+        .device-sd-preview-row {
+          gap: 14px;
+          grid-template-columns: minmax(0, 1fr) clamp(140px, 42%, 220px);
         }
         .job-sliders {
           gap: 12px;
         }
       }
       @media (max-width: 767px) {
-        .device-workflow {
-          grid-template-columns: minmax(0, 1fr);
+        .device-sd-preview-row {
+          gap: 10px;
+          grid-template-columns: minmax(0, 1fr) clamp(128px, 44%, 190px);
         }
         .device-thumbnail {
-          max-width: 300px;
+          padding: 10px;
+        }
+        .device-thumbnail h2 {
+          margin-bottom: 8px;
         }
         .job-sliders {
           gap: 16px;
           grid-template-columns: minmax(0, 1fr);
         }
         .workflow-steps {
-          gap: 28px;
+          gap: 24px;
         }
       }
       .workflow-disclosure > summary {
@@ -5991,6 +6286,28 @@
           padding-left: 0;
         }
       }
+      #c2-door-readout[data-class="class1"] {
+        background: #dcfce7;
+        border: 1px solid #86efac;
+        color: #15803d;
+        font-weight: 600;
+      }
+      .dark #c2-door-readout[data-class="class1"] {
+        background: #0f291a;
+        border: 1px solid #166534;
+        color: #4ade80;
+      }
+      #c2-door-readout[data-class="class4"] {
+        background: #fee2e2;
+        border: 1px solid #fca5a5;
+        color: #b91c1c;
+        font-weight: 600;
+      }
+      .dark #c2-door-readout[data-class="class4"] {
+        background: #2f1215;
+        border: 1px solid #991b1b;
+        color: #f87171;
+      }
       .class4-box {
         margin-top: 1rem;
         padding: 0.75rem 0.875rem;
@@ -5999,6 +6316,11 @@
         background: var(--surface-subtle, rgba(128, 128, 128, 0.06));
         transition: border-color 150ms ease, background-color 150ms ease;
       }
+      .class4-box[data-class="class1"] {
+        border-color: #16a34a;
+        background: rgba(22, 163, 74, 0.08);
+      }
+      .class4-box[data-class="class4"],
       .class4-box[data-active="true"] {
         border-color: var(--danger, #dc2626);
         background: rgba(220, 38, 38, 0.08);
@@ -6014,54 +6336,29 @@
         display: inline-flex;
         align-items: center;
         gap: 0.55rem;
-        cursor: pointer;
         font-size: 0.875rem;
         font-weight: 600;
-      }
-      .class4-switch {
-        position: relative;
-        width: 2.5rem;
-        height: 1.35rem;
-        appearance: none;
-        -webkit-appearance: none;
-        border-radius: 999px;
-        background: var(--border, #9ca3af);
-        cursor: pointer;
-        transition: background-color 150ms ease;
-        flex-shrink: 0;
-      }
-      .class4-switch::after {
-        content: "";
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        width: calc(1.35rem - 4px);
-        height: calc(1.35rem - 4px);
-        border-radius: 999px;
-        background: #fff;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-        transition: transform 150ms ease;
-      }
-      .class4-switch:checked {
-        background: var(--danger, #dc2626);
-      }
-      .class4-switch:checked::after {
-        transform: translateX(1.15rem);
-      }
-      .class4-switch:disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
       }
       .class4-badge {
         font-size: 0.72rem;
         font-weight: 700;
-        padding: 0.12rem 0.48rem;
+        padding: 0.14rem 0.55rem;
         border-radius: 999px;
         border: 1px solid var(--border);
         color: var(--muted);
       }
+      .class4-box[data-class="class1"] .class4-badge {
+        border-color: #16a34a;
+        background: rgba(22, 163, 74, 0.14);
+        color: #15803d;
+      }
+      .dark .class4-box[data-class="class1"] .class4-badge {
+        color: #4ade80;
+      }
+      .class4-box[data-class="class4"] .class4-badge,
       .class4-box[data-active="true"] .class4-badge {
         border-color: var(--danger, #dc2626);
+        background: rgba(220, 38, 38, 0.14);
         color: var(--danger, #dc2626);
       }
       .pin-input {
@@ -6326,9 +6623,6 @@
         role="status"
         aria-live="polite"
         ><div class="status-command-row"
-          ><div class="status-summary"
-            ><strong id="c2-process-state" data-i18n="未連線">未連線</strong
-            ><div id="c2-process-detail" class="status-detail"></div></div
           ><div
             class="status-job-controls"
             role="group"
@@ -6337,7 +6631,7 @@
             ><div class="button-row job-actions"
               ><button
                 id="c2-home"
-                class="action-button action-icon"
+                class="action-button primary action-icon"
                 data-icon-button="home"
                 type="button"
                 aria-label="回原點"
@@ -6378,10 +6672,11 @@
                 ><span id="c2-preview-box-label" class="sr-only" data-i18n="預覽外框">預覽外框</span></button
               ><button
                 id="c2-run-file"
-                class="action-button primary action-icon"
+                class="action-button start-green action-icon"
                 type="button"
                 disabled
                 data-icon-button="start"
+                data-mode="start"
                 aria-label="開始"
                 title="開始"
                 data-i18n-title="開始"
@@ -6417,26 +6712,6 @@
                   <path d="M8 5v14M16 5v14" stroke-width="3.5" stroke-linecap="round" /></svg
                 ><span id="c2-pause-label" class="sr-only" data-i18n="暫停">暫停</span></button
               ><button
-                id="c2-resume"
-                class="action-button action-icon"
-                type="button"
-                disabled
-                data-icon-button="resume"
-                aria-label="繼續"
-                title="繼續"
-                data-i18n-title="繼續"
-                data-i18n-aria-label="繼續"
-                ><svg
-                  aria-hidden="true"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <path d="m9 5 11 7-11 7Z" fill="currentColor" stroke-linejoin="round" /></svg
-                ><span id="c2-resume-label" class="sr-only" data-i18n="繼續">繼續</span></button
-              ><button
                 id="c2-stop"
                 class="action-button danger action-icon"
                 type="button"
@@ -6456,29 +6731,32 @@
                 >
                   <rect x="6" y="6" width="12" height="12" rx="1" fill="currentColor" /></svg
                 ><span id="c2-stop-label" class="sr-only" data-i18n="stop">停止</span></button
-              ><button
-                id="c2-retry"
-                class="action-button action-icon"
-                type="button"
-                hidden
-                disabled
-                data-icon-button="retry"
-                aria-label="清除錯誤"
-                title="清除錯誤"
-                data-i18n-title="清除錯誤"
-                data-i18n-aria-label="清除錯誤"
-                ><svg
-                  aria-hidden="true"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <path d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8.3 8.3 0 0 1 20 12M4 12a8.3 8.3 0 0 0 13.9 5.9" stroke-linecap="round" stroke-linejoin="round" /></svg
-                ><span id="c2-retry-label" class="sr-only" data-i18n="清除錯誤">清除錯誤</span></button
               ></div
             ></div
+          ><div class="status-summary"
+            ><strong id="c2-process-state" data-i18n="未連線">未連線</strong
+            ><div id="c2-process-detail" class="status-detail"></div></div
+          ><button
+            id="c2-retry"
+            class="action-button action-icon"
+            type="button"
+            hidden
+            disabled
+            data-icon-button="retry"
+            aria-label="清除錯誤"
+            title="清除錯誤"
+            data-i18n-title="清除錯誤"
+            data-i18n-aria-label="清除錯誤"
+            ><svg
+              aria-hidden="true"
+              focusable="false"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8.3 8.3 0 0 1 20 12M4 12a8.3 8.3 0 0 0 13.9 5.9" stroke-linecap="round" stroke-linejoin="round" /></svg
+            ><span id="c2-retry-label" class="sr-only" data-i18n="清除錯誤">清除錯誤</span></button
           ></div
         ><div id="c2-job-timing" class="mt-3" hidden
           ><div class="flex justify-between text-xs"
@@ -6500,34 +6778,10 @@
 
             <div class="project-editor-layout">
               <div class="project-stage">
-                <div id="project-canvas-wrap" class="project-canvas-wrap">
-                  <canvas
-                    tabindex="0"
-                    id="project-editor-canvas"
-                    aria-label="加工畫布"
-                    data-i18n-aria-label="加工畫布"
-                  ></canvas>
-                </div>
                 <div class="project-stage-footer">
                   <span id="project-machine-size">Cubiio · 100 × 100 mm (±50 mm)</span>
-                  <span
-                    id="project-converted-badge"
-                    class="project-converted-badge"
-                    data-visible="false"
-                    data-i18n="projectConvertedPreview"
-                    >轉檔預覽</span
-                  >
-                  <span id="project-zoom-value">100%</span>
-                </div>
-              </div>
-
-              <aside class="project-controls" aria-label="畫布操作" data-i18n-aria-label="畫布操作">
-                <div class="project-tool-header"
-                  ><div
-                    ><h2 data-i18n="toolPanel">設計工具</h2
-                    ><p data-i18n="toolPanelNote">100 × 100 mm 畫布 · 中心原點 (0, 0)</p></div
-                  ><div class="project-history-controls"
-                    ><button
+                  <div class="project-history-controls">
+                    <button
                       id="project-undo"
                       class="action-button history-icon"
                       type="button"
@@ -6536,7 +6790,8 @@
                       title="復原"
                       data-i18n-title="undo"
                       data-i18n-aria-label="undo"
-                      ><svg
+                    >
+                      <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -6545,9 +6800,11 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <path d="M9 5 4 10l5 5M4 10h9a7 7 0 0 1 7 7v2" /></svg
-                      ><span class="sr-only" data-i18n="undo">復原</span></button
-                    ><button
+                        <path d="M9 5 4 10l5 5M4 10h9a7 7 0 0 1 7 7v2" />
+                      </svg>
+                      <span class="sr-only" data-i18n="undo">復原</span>
+                    </button>
+                    <button
                       id="project-redo"
                       class="action-button history-icon"
                       type="button"
@@ -6556,7 +6813,8 @@
                       title="重做"
                       data-i18n-title="redo"
                       data-i18n-aria-label="redo"
-                      ><svg
+                    >
+                      <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"
                         fill="none"
@@ -6565,11 +6823,45 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       >
-                        <path d="m15 5 5 5-5 5M20 10h-9a7 7 0 0 0-7 7v2" /></svg
-                      ><span class="sr-only" data-i18n="redo">重做</span></button
-                    ></div
-                  ></div
-                ><div
+                        <path d="m15 5 5 5-5 5M20 10h-9a7 7 0 0 0-7 7v2" />
+                      </svg>
+                      <span class="sr-only" data-i18n="redo">重做</span>
+                    </button>
+                  </div>
+                  <span id="project-zoom-value">100%</span>
+                </div>
+                <div id="project-canvas-wrap" class="project-canvas-wrap">
+                  <canvas
+                    tabindex="0"
+                    id="project-editor-canvas"
+                    aria-label="加工畫布"
+                    data-i18n-aria-label="加工畫布"
+                  ></canvas>
+                  <span
+                    id="project-converted-badge"
+                    class="project-converted-badge"
+                    data-visible="false"
+                    data-i18n="projectConvertedPreview"
+                    >轉檔預覽</span
+                  >
+                </div>
+              </div>
+
+              <aside class="project-controls" data-panel-open="false" aria-label="畫布操作" data-i18n-aria-label="畫布操作">
+                <div class="project-tool-header">
+                  <button
+                    id="project-close-tool"
+                    class="action-button project-close-tool"
+                    type="button"
+                    hidden
+                    aria-label="收合工具面板"
+                    title="收合工具面板"
+                    data-i18n-title="收合工具面板"
+                    data-i18n-aria-label="收合工具面板"
+                  >&times;</button>
+                  <h2 data-i18n="設計工具">設計工具</h2>
+                </div>
+                <div
                   class="project-tabs"
                   role="tablist"
                   aria-label="畫布工具"
@@ -6579,71 +6871,82 @@
                     class="project-tab"
                     type="button"
                     role="tab"
-                    aria-selected="true"
+                    aria-selected="false"
                     data-project-tab="upload"
-                    ><svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                    >
-                      <path d="M12 16V4M7.5 8.5 12 4l4.5 4.5M5 14v5h14v-5" /></svg
-                    ><span data-i18n="projectUpload">上傳</span></button
                   >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                      <path d="M12 16V4M7.5 8.5 12 4l4.5 4.5M5 14v5h14v-5" />
+                    </svg>
+                    <span data-i18n="projectUpload">上傳</span>
+                  </button>
                   <button
                     class="project-tab"
                     type="button"
                     role="tab"
                     aria-selected="false"
                     data-project-tab="text"
-                    ><svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                    >
-                      <path d="M5 6V4h14v2M12 4v16M8.5 20h7" /></svg
-                    ><span data-i18n="projectText">文字</span></button
                   >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                      <path d="M5 6V4h14v2M12 4v16M8.5 20h7" />
+                    </svg>
+                    <span data-i18n="projectText">文字</span>
+                  </button>
+                  <button
+                    class="project-tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-project-tab="shape"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                      <circle cx="9" cy="14" r="5" />
+                      <path d="M12.5 5 19.5 5 19.5 12" />
+                      <rect x="13" y="4.5" width="6.5" height="6.5" rx="1" />
+                    </svg>
+                    <span data-i18n="圖形">圖形</span>
+                  </button>
+                  <button
+                    class="project-tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-project-tab="brush"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L9 17l-4.5 1.5L6 14 16.5 3.5Z" />
+                      <path d="M4 20h16" />
+                    </svg>
+                    <span data-i18n="畫筆">畫筆</span>
+                  </button>
                   <button
                     class="project-tab"
                     type="button"
                     role="tab"
                     aria-selected="false"
                     data-project-tab="edit"
-                    ><svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                    >
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                       <path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6" />
                       <circle cx="14" cy="7" r="2" />
-                      <circle cx="8" cy="17" r="2" /></svg
-                    ><span data-i18n="projectEdit">編輯</span></button
-                  >
+                      <circle cx="8" cy="17" r="2" />
+                    </svg>
+                    <span data-i18n="projectEdit">編輯</span>
+                  </button>
                   <button
                     class="project-tab"
                     type="button"
                     role="tab"
                     aria-selected="false"
                     data-project-tab="output"
-                    ><svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.7"
-                    >
-                      <path d="M12 4v12M7.5 11.5 12 16l4.5-4.5M5 18v2h14v-2" /></svg
-                    ><span data-i18n="projectOutput">輸出</span></button
                   >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                      <path d="M12 4v12M7.5 11.5 12 16l4.5-4.5M5 18v2h14v-2" />
+                    </svg>
+                    <span data-i18n="projectOutput">輸出</span>
+                  </button>
                 </div>
 
-                <section class="project-panel" data-project-panel="upload">
+                <section class="project-panel" data-project-panel="upload" hidden>
                   <label for="project-file-input" class="field-label" data-i18n="projectChooseFiles"
                     >選擇 SVG、JPG、BMP 或 PNG</label
                   >
@@ -6655,10 +6958,9 @@
                     class="block w-full text-sm"
                     style="color: var(--muted)"
                   />
-
-                  <p class="field-help" data-i18n="bmpNativeHint"></p
-                  ><p id="project-bmp-limit" class="field-help"></p
-                  ><div
+                  <p class="field-help" data-i18n="bmpNativeHint"></p>
+                  <p id="project-bmp-limit" class="field-help"></p>
+                  <div
                     id="project-upload-status"
                     class="project-empty mt-4"
                     role="status"
@@ -6671,66 +6973,132 @@
                   <label for="project-text-value" class="field-label" data-i18n="projectTextContent"
                     >文字內容</label
                   >
-                  <input
+                  <textarea
                     id="project-text-value"
                     data-user-content
-                    class="form-control"
-                    type="text"
-                    maxlength="120"
-                    value="Cubiio"
-                  />
-                  <div class="project-field-grid mt-4">
-                    <div>
-                      <label for="project-font" class="field-label" data-i18n="projectFont"
-                        >字體</label
-                      >
-                      <select id="project-font" class="form-control"
-                        ><option value="sans-serif">Sans serif</option
-                        ><option value="serif">Serif</option
-                        ><option value="monospace">Monospace</option></select
-                      ><p class="field-help" data-i18n="離線文字說明"></p>
+                    class="form-control py-2"
+                    rows="2"
+                    maxlength="240"
+                  >Cubiio</textarea>
+                  <div class="mt-3">
+                    <label for="project-font" class="field-label" data-i18n="projectFont">字體</label>
+                    <div class="project-font-row">
+                      <select id="project-font" class="form-control">
+                        <option value="sans-serif" data-i18n="系統字型">系統字型</option>
+                        <option value="serif">Serif</option>
+                        <option value="monospace">Monospace</option>
+                      </select>
+                      <button
+                        id="project-font-plus"
+                        class="action-button project-font-plus"
+                        type="button"
+                        aria-label="匯入字型檔案（.ttf / .otf / .woff / .woff2）"
+                        title="匯入字型檔案（.ttf / .otf / .woff / .woff2）"
+                        data-i18n-title="匯入字型檔案（.ttf / .otf / .woff / .woff2）"
+                        data-i18n-aria-label="匯入字型檔案（.ttf / .otf / .woff / .woff2）"
+                      >+</button>
+                      <input id="project-import-font" type="file" accept=".ttf,.otf,.woff,.woff2" hidden />
                     </div>
+                  </div>
+                  <div class="mt-3">
+                    <label for="project-font-size" class="field-label" data-i18n="projectTextSize"
+                      >字高 / mm</label
+                    >
+                    <input
+                      id="project-font-size"
+                      class="form-control"
+                      type="number"
+                      min="2"
+                      max="80"
+                      step="0.5"
+                      value="12"
+                    />
+                  </div>
+                  <p id="project-font-status" class="field-help" data-i18n="離線文字說明"></p>
+                  <button
+                    id="project-add-text"
+                    class="action-button primary mt-4 w-full"
+                    type="button"
+                    data-i18n="projectAddText"
+                    >加入文字</button
+                  >
+                </section>
+
+                <section class="project-panel" data-project-panel="shape" hidden>
+                  <label for="project-shape-kind" class="field-label" data-i18n="形狀">形狀</label>
+                  <select id="project-shape-kind" class="form-control">
+                    <option value="ellipse" data-i18n="圓／橢圓">圓／橢圓</option>
+                    <option value="polygon" data-i18n="正多角形">正多角形</option>
+                    <option value="rectangle" data-i18n="矩形">矩形</option>
+                  </select>
+                  <div id="project-shape-sides-row" class="mt-3" hidden>
+                    <label for="project-shape-sides" class="field-label" data-i18n="邊數">邊數</label>
+                    <input
+                      id="project-shape-sides"
+                      class="form-control"
+                      type="number"
+                      min="3"
+                      max="64"
+                      step="1"
+                      value="6"
+                    />
+                  </div>
+                  <div class="project-field-grid mt-3">
                     <div>
-                      <label for="project-font-size" class="field-label" data-i18n="projectTextSize"
-                        >字高 / mm</label
-                      >
+                      <label for="project-shape-width" class="field-label" data-i18n="projectWidth">寬 / mm</label>
                       <input
-                        id="project-font-size"
+                        id="project-shape-width"
                         class="form-control"
                         type="number"
-                        min="2"
-                        max="80"
+                        min="1"
+                        max="100"
                         step="0.5"
-                        value="12"
+                        value="30"
+                      />
+                    </div>
+                    <div>
+                      <label for="project-shape-height" class="field-label" data-i18n="projectHeight">高 / mm</label>
+                      <input
+                        id="project-shape-height"
+                        class="form-control"
+                        type="number"
+                        min="1"
+                        max="100"
+                        step="0.5"
+                        value="30"
                       />
                     </div>
                   </div>
                   <button
-                    id="project-add-text"
-                    class="action-button primary mt-4 w-full action-icon"
+                    id="project-add-shape"
+                    class="action-button primary mt-4 w-full"
                     type="button"
-                    data-icon-button="text"
-                    aria-label="加入文字"
-                    title="加入文字"
-                    data-i18n-title="加入文字"
-                    data-i18n-aria-label="加入文字"
-                    ><svg
-                      aria-hidden="true"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                    >
-                      <path
-                        d="M3 5h12M9 5v14M6 19h6M18 11v8m-4-4h8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      /></svg
-                    ><span id="project-add-text-label" class="sr-only" data-i18n="projectAddText"
-                      >加入文字</span
-                    ></button
+                    data-i18n="加入圖形"
+                    >加入圖形</button
                   >
+                </section>
+
+                <section class="project-panel" data-project-panel="brush" hidden>
+                  <p class="field-help mt-0" data-i18n="點擊「開始畫筆」後即可在畫布自由繪製向量線條；按 Esc 或切換分頁可結束畫筆。">
+                    點擊「開始畫筆」後即可在畫布自由繪製向量線條；按 Esc 或切換分頁可結束畫筆。
+                  </p>
+                  <div class="mt-4 flex flex-col gap-2">
+                    <button
+                      id="project-brush-activate"
+                      class="action-button primary w-full"
+                      type="button"
+                      data-i18n="開始畫筆"
+                      >開始畫筆</button
+                    >
+                    <button
+                      id="project-brush-finish"
+                      class="action-button w-full"
+                      type="button"
+                      disabled
+                      data-i18n="結束畫筆"
+                      >結束畫筆</button
+                    >
+                  </div>
                 </section>
 
                 <section class="project-panel" data-project-panel="edit" hidden>
@@ -6745,41 +7113,36 @@
                     data-user-content
                     class="form-control"
                     size="5"
+                    style="height: 82px"
                   ></select>
-                  <div class="project-field-grid mt-4">
-                    <div
-                      ><label for="project-x" class="field-label">X / mm (-50～50)</label
-                      ><input id="project-x" class="form-control" type="number" min="-50" max="50" step="0.1"
-                    /></div>
-                    <div
-                      ><label for="project-y" class="field-label">Y / mm (-50～50)</label
-                      ><input id="project-y" class="form-control" type="number" min="-50" max="50" step="0.1"
-                    /></div>
-                    <div
-                      ><label for="project-width" class="field-label" data-i18n="projectWidth"
-                        >寬 / mm</label
-                      ><input
-                        id="project-width"
-                        class="form-control"
-                        type="number"
-                        min="1"
-                        step="0.1"
-                    /></div>
-                    <div
-                      ><label for="project-height" class="field-label" data-i18n="projectHeight"
-                        >高 / mm</label
-                      ><input
-                        id="project-height"
-                        class="form-control"
-                        type="number"
-                        min="1"
-                        step="0.1"
-                    /></div>
-                    <div class="col-span-2"
-                      ><label for="project-rotation" class="field-label" data-i18n="projectRotation"
-                        >旋轉 / °</label
-                      ><input id="project-rotation" class="form-control" type="number" step="1"
-                    /></div>
+                  <div class="mt-3">
+                    <label for="project-position-reference" class="field-label" data-i18n="座標基準">座標基準</label>
+                    <select id="project-position-reference" class="form-control">
+                      <option value="center" data-i18n="中心">中心</option>
+                      <option value="lower-left" data-i18n="左下（外框）">左下（外框）</option>
+                    </select>
+                  </div>
+                  <div class="project-field-grid mt-3">
+                    <div>
+                      <label for="project-x" class="field-label">X / mm (-50～50)</label>
+                      <input id="project-x" class="form-control" type="number" min="-50" max="50" step="0.1" />
+                    </div>
+                    <div>
+                      <label for="project-y" class="field-label">Y / mm (-50～50)</label>
+                      <input id="project-y" class="form-control" type="number" min="-50" max="50" step="0.1" />
+                    </div>
+                    <div>
+                      <label for="project-width" class="field-label" data-i18n="projectWidth">寬 / mm</label>
+                      <input id="project-width" class="form-control" type="number" min="1" step="0.1" />
+                    </div>
+                    <div>
+                      <label for="project-height" class="field-label" data-i18n="projectHeight">高 / mm</label>
+                      <input id="project-height" class="form-control" type="number" min="1" step="0.1" />
+                    </div>
+                    <div class="col-span-2">
+                      <label for="project-rotation" class="field-label" data-i18n="projectRotation">旋轉 / °</label>
+                      <input id="project-rotation" class="form-control" type="number" step="1" />
+                    </div>
                   </div>
                   <div class="button-row mt-4">
                     <button
@@ -6791,23 +7154,13 @@
                       title="複製"
                       data-i18n-title="複製"
                       data-i18n-aria-label="複製"
-                      ><svg
-                        aria-hidden="true"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      >
-                        <rect x="8" y="8" width="12" height="12" rx="1.5" />
-                        <path d="M16 8V4H4v12h4" stroke-linejoin="round" /></svg
-                      ><span
-                        id="project-duplicate-label"
-                        class="sr-only"
-                        data-i18n="projectDuplicate"
-                        >複製</span
-                      ></button
                     >
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="8" y="8" width="12" height="12" rx="1.5" />
+                        <path d="M16 8V4H4v12h4" stroke-linejoin="round" />
+                      </svg>
+                      <span id="project-duplicate-label" class="sr-only" data-i18n="projectDuplicate">複製</span>
+                    </button>
                     <button
                       id="project-delete"
                       class="action-button danger action-icon"
@@ -6817,32 +7170,18 @@
                       title="刪除"
                       data-i18n-title="刪除"
                       data-i18n-aria-label="刪除"
-                      ><svg
-                        aria-hidden="true"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      >
-                        <path
-                          d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        /></svg
-                      ><span id="project-delete-label" class="sr-only" data-i18n="projectDelete"
-                        >刪除</span
-                      ></button
                     >
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      <span id="project-delete-label" class="sr-only" data-i18n="projectDelete">刪除</span>
+                    </button>
                   </div>
                 </section>
 
-                <section class="project-panel" data-project-panel="output" hidden
-                  ><div class="project-output-scroll">
-                    <label
-                      for="project-output-format"
-                      class="field-label"
-                      data-i18n="projectOutputFormat"
+                <section class="project-panel" data-project-panel="output" hidden>
+                  <div class="project-output-scroll">
+                    <label for="project-output-format" class="field-label" data-i18n="projectOutputFormat"
                       >輸出格式</label
                     >
                     <select id="project-output-format" class="form-control">
@@ -6863,29 +7202,16 @@
                           ><span data-i18n="projectThreshold">黑白門檻</span> ·
                           <output id="project-threshold-value">128</output></label
                         >
-                        <input
-                          id="project-threshold"
-                          class="w-full"
-                          type="range"
-                          min="0"
-                          max="255"
-                          value="128"
-                        />
+                        <input id="project-threshold" class="w-full" type="range" min="0" max="255" value="128" />
                       </div>
-                      <p
-                        id="project-binary-note"
-                        class="project-note"
-                        data-i18n="0.1 mm/pixel · 黑色區域出光"
+                      <p id="project-binary-note" class="project-note" data-i18n="0.1 mm/pixel · 黑色區域出光"
                         >0.1 mm/pixel · 黑色區域出光</p
                       >
                     </div>
 
                     <div id="project-vector-options" class="project-option-group" hidden>
                       <div class="project-option-row" data-raster-vector-option>
-                        <label
-                          for="project-centerline"
-                          class="text-sm font-medium"
-                          data-i18n="projectCenterline"
+                        <label for="project-centerline" class="text-sm font-medium" data-i18n="projectCenterline"
                           >中心線模式</label
                         >
                         <button
@@ -6903,73 +7229,38 @@
                           ><span data-i18n="projectCenterlineWidth">單線寬度上限</span> ·
                           <output id="project-centerline-width-value">12 px</output></label
                         >
-                        <input
-                          id="project-centerline-width"
-                          class="w-full"
-                          type="range"
-                          min="1"
-                          max="100"
-                          step="1"
-                          value="12"
-                        />
+                        <input id="project-centerline-width" class="w-full" type="range" min="1" max="100" step="1" value="12" />
                       </div>
                       <div data-raster-vector-option>
                         <label for="project-noise" class="field-label"
                           ><span data-i18n="projectNoise">雜點過濾</span> ·
                           <output id="project-noise-value">10 px</output></label
                         >
-                        <input
-                          id="project-noise"
-                          class="w-full"
-                          type="range"
-                          min="0"
-                          max="100"
-                          step="1"
-                          value="10"
-                        />
+                        <input id="project-noise" class="w-full" type="range" min="0" max="100" step="1" value="10" />
                       </div>
                       <div>
                         <label for="project-resolution" class="field-label"
                           ><span data-i18n="projectResolution">解析度（線段長）</span> ·
                           <output id="project-resolution-value">1.0 mm</output></label
                         >
-                        <input
-                          id="project-resolution"
-                          class="w-full"
-                          type="range"
-                          min="0.1"
-                          max="5"
-                          step="0.1"
-                          value="1"
-                        />
+                        <input id="project-resolution" class="w-full" type="range" min="0.1" max="5" step="0.1" value="1" />
                       </div>
                       <div data-raster-vector-option>
                         <label for="project-smoothing" class="field-label"
                           ><span data-i18n="projectSmoothing">曲線平滑度</span> ·
                           <output id="project-smoothing-value">3</output></label
                         >
-                        <input
-                          id="project-smoothing"
-                          class="w-full"
-                          type="range"
-                          min="0"
-                          max="6"
-                          step="1"
-                          value="3"
-                        />
+                        <input id="project-smoothing" class="w-full" type="range" min="0" max="6" step="1" value="3" />
                       </div>
                     </div>
-                    <section id="project-fill-settings" hidden class="mt-4"
-                      ><label class="bmp-check"
-                        ><input id="project-fill" type="checkbox" /><span data-i18n="fill"
-                          >填滿封閉區域</span
-                        ></label
-                      ><label
-                        for="project-fill-spacing"
-                        class="field-label mt-3"
-                        data-i18n="spacing"
+                    <section id="project-fill-settings" hidden class="mt-4">
+                      <label class="bmp-check"
+                        ><input id="project-fill" type="checkbox" /><span data-i18n="fill">填滿封閉區域</span></label
+                      >
+                      <label for="project-fill-spacing" class="field-label mt-3" data-i18n="spacing"
                         >填滿間距 / mm</label
-                      ><input
+                      >
+                      <input
                         id="project-fill-spacing"
                         class="form-control"
                         type="number"
@@ -6977,76 +7268,43 @@
                         max="10"
                         step="0.01"
                         value="0.2"
-                        disabled /><p class="field-help" data-i18n="fillHelp"
-                        >保留內孔；開放路徑不填滿。</p
-                      ><p class="field-help" data-i18n="fillRegionHint"></p></section
-                    ><div id="project-gcode-fields" class="project-field-grid mt-4" hidden>
-                      <div
-                        ><label for="project-feed" class="field-label" data-i18n="projectFeed"
-                          >速度 / mm/min</label
-                        ><input
-                          id="project-feed"
-                          class="form-control"
-                          type="number"
-                          min="60"
-                          max="3000"
-                          step="10"
-                          value="600"
-                      /></div>
-                      <div
-                        ><label for="project-power" class="field-label" data-i18n="projectPower"
-                          >功率 / %</label
-                        ><input
-                          id="project-power"
-                          class="form-control"
-                          type="number"
-                          min="1"
-                          max="100"
-                          step="1"
-                          value="80"
-                      /></div>
+                        disabled
+                      />
+                      <p class="field-help" data-i18n="fillHelp">保留內孔；開放路徑不填滿。</p>
+                      <p class="field-help" data-i18n="fillRegionHint"></p>
+                    </section>
+                    <div id="project-gcode-fields" class="project-field-grid mt-4" hidden>
+                      <div>
+                        <label for="project-feed" class="field-label" data-i18n="projectFeed">速度 / mm/min</label>
+                        <input id="project-feed" class="form-control" type="number" min="60" max="3000" step="10" value="600" />
+                      </div>
+                      <div>
+                        <label for="project-power" class="field-label" data-i18n="projectPower">功率 / %</label>
+                        <input id="project-power" class="form-control" type="number" min="1" max="100" step="1" value="80" />
+                      </div>
                     </div>
-                    <p id="project-feed-hint" class="field-help"></p></div
-                  ><footer class="project-output-footer"
-                    ><div class="mb-3"
-                      ><label for="project-filename" class="field-label" data-i18n="輸出檔名（SD 限 8 碼英數）"
+                    <p id="project-feed-hint" class="field-help"></p>
+                  </div>
+                  <footer class="project-output-footer">
+                    <div class="mb-3">
+                      <label for="project-filename" class="field-label" data-i18n="輸出檔名（SD 限 8 碼英數）"
                         >輸出檔名（SD 限 8 碼英數）</label
-                      ><input
-                        id="project-filename"
-                        class="form-control"
-                        type="text"
-                        maxlength="8"
-                        value="WORK"
-                        placeholder="WORK"
-                        autocomplete="off"
-                        spellcheck="false"
-                    /></div><div class="project-export-actions">
-                      <button
-                        id="project-convert"
-                        class="action-button primary action-icon"
-                        type="button"
-                        data-icon-button="convert"
-                        aria-label="轉檔"
-                        title="轉檔"
-                        data-i18n-title="轉檔"
-                        data-i18n-aria-label="轉檔"
-                        ><svg
-                          aria-hidden="true"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                        >
-                          <path
-                            d="M13 3H6v18h12v-6M13 3v5h5l-5-5ZM11 12h10m-3-3 3 3-3 3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          /></svg
-                        ><span id="project-convert-label" class="sr-only" data-i18n="projectConvert"
-                          >轉檔</span
-                        ></button
                       >
+                      <div class="project-output-name-row">
+                        <input
+                          id="project-filename"
+                          class="form-control"
+                          type="text"
+                          maxlength="8"
+                          value="WORK"
+                          placeholder="WORK"
+                          autocomplete="off"
+                          spellcheck="false"
+                        />
+                        <span id="project-output-suffix" class="project-output-suffix">.bmp</span>
+                      </div>
+                    </div>
+                    <div class="project-export-actions">
                       <button
                         id="project-download"
                         class="action-button action-icon"
@@ -7057,87 +7315,58 @@
                         title="下載"
                         data-i18n-title="下載"
                         data-i18n-aria-label="下載"
-                        ><svg
-                          aria-hidden="true"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                        >
-                          <path
-                            d="M12 4v12m-5-5 5 5 5-5M4 16v4h16v-4"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          /></svg
-                        ><span
-                          id="project-download-label"
-                          class="sr-only"
-                          data-i18n="projectDownload"
-                          >下載</span
-                        ></button
                       >
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                          <path d="M12 4v12m-5-5 5 5 5-5M4 16v4h16v-4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span id="project-download-label" class="sr-only" data-i18n="projectDownload">下載</span>
+                      </button>
                       <button
-                        id="project-send-device"
+                        id="project-upload-sd"
                         class="action-button primary action-icon"
                         type="button"
                         disabled
-                        data-icon-button="send-device"
-                        aria-label="送到機台頁"
-                        title="送到機台頁"
-                        data-i18n-title="送到機台頁"
-                        data-i18n-aria-label="送到機台頁"
-                        ><svg
-                          aria-hidden="true"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                        >
-                          <path
-                            d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          /></svg
-                        ><span
-                          id="project-send-device-label"
-                          class="sr-only"
-                          data-i18n="projectSendDevice"
-                          >送到機台頁</span
-                        ></button
+                        data-icon-button="upload"
+                        aria-label="上傳"
+                        title="上傳至 SD 卡"
+                        data-i18n-title="上傳至 SD 卡"
+                        data-i18n-aria-label="上傳至 SD 卡"
                       >
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                          <path d="M12 16V4M7.5 8.5 12 4l4.5 4.5M5 14v5h14v-5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span id="project-upload-sd-label" class="sr-only" data-i18n="projectUpload">上傳</span>
+                      </button>
                     </div>
-                    <div
-                      id="project-compute-status"
-                      hidden
-                      class="mt-3"
-                      role="status"
-                      aria-live="polite"
-                      ><span id="project-compute-label"></span
-                      ><progress
+                    <div id="project-compute-status" hidden class="mt-3" role="status" aria-live="polite">
+                      <span id="project-compute-label"></span>
+                      <progress
                         id="project-compute-progress"
                         max="100"
                         aria-label="背景運算中"
                         data-i18n-aria-label="背景運算中"
-                      ></progress
-                      ><button
-                        id="project-compute-cancel"
-                        class="action-button"
-                        type="button"
-                        data-i18n="cancelCompute"
+                      ></progress>
+                      <button id="project-compute-cancel" class="action-button mt-2" type="button" data-i18n="cancelCompute"
                         >取消運算</button
-                      ></div
-                    ><p
+                      >
+                    </div>
+                    <div id="project-transfer" hidden class="project-transfer" role="status" aria-live="polite">
+                      <div class="project-transfer-head">
+                        <span id="project-transfer-label">正在上傳至 SD…</span>
+                        <button id="project-transfer-cancel" class="action-button danger" type="button" style="min-height: 28px; padding: 2px 10px; font-size: 12px" data-i18n="取消上傳">取消上傳</button>
+                      </div>
+                      <progress id="project-transfer-progress" max="100" value="0"></progress>
+                    </div>
+                    <p
                       id="project-export-status"
                       class="project-note"
                       role="status"
                       aria-live="polite"
-                      data-i18n="projectExportHint"
-                      >先轉檔並在畫布確認結果，再下載檔案。</p
+                      data-i18n="開啟輸出分頁後會自動即時轉檔，可直接下載或上傳至 SD 卡。"
+                      >開啟輸出分頁後會自動即時轉檔，可直接下載或上傳至 SD 卡。</p
                     >
-                  </footer></section
-                >
+                  </footer>
+                </section>
               </aside>
             </div>
             <div id="project-live-status" class="sr-only" role="status" aria-live="polite"></div>
@@ -7293,68 +7522,102 @@
                   ></details>
                 </li>
                 <li class="workflow-step">
-                  <details id="c2-sd-panel" class="workflow-disclosure" aria-labelledby="sd-title">
-                    <summary class="workflow-head"
-                      ><span class="workflow-number" aria-hidden="true">2</span
-                      ><h2 id="sd-title" data-i18n="選取 SD 卡內檔案">選取 SD 卡內檔案</h2
-                      ><svg
-                        class="disclosure-chevron"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                      >
-                        <path
-                          d="m9 5 7 7-7 7"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        /></svg></summary
-                    ><div class="workflow-disclosure-body"
-                      ><div class="button-row mb-3"
-                        ><button
-                          id="c2-refresh-sd"
-                          class="action-button action-icon"
-                          type="button"
-                          disabled
-                          data-icon-button="refresh"
-                          aria-label="重新整理"
-                          title="重新整理"
-                          data-i18n-title="重新整理"
-                          data-i18n-aria-label="重新整理"
+                  <div class="device-sd-preview-row">
+                    <div class="device-sd-column">
+                      <details id="c2-sd-panel" class="workflow-disclosure" aria-labelledby="sd-title" open>
+                        <summary class="workflow-head"
+                          ><span class="workflow-number" aria-hidden="true">2</span
+                          ><h2 id="sd-title" data-i18n="選取 SD 卡內檔案">選取 SD 卡內檔案</h2
                           ><svg
+                            class="disclosure-chevron"
                             aria-hidden="true"
-                            focusable="false"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="1.8"
                           >
                             <path
-                              d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8.3 8.3 0 0 1 20 12M4 12a8.3 8.3 0 0 0 13.9 5.9"
+                              d="m9 5 7 7-7 7"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                            /></svg
-                          ><span id="c2-refresh-sd-label" class="sr-only" data-i18n="refresh"
-                            >重新整理</span
-                          ></button
-                        ></div
+                            /></svg></summary
+                        ><div class="workflow-disclosure-body"
+                          ><div class="button-row mb-3"
+                            ><button
+                              id="c2-refresh-sd"
+                              class="action-button action-icon"
+                              type="button"
+                              disabled
+                              data-icon-button="refresh"
+                              aria-label="重新整理"
+                              title="重新整理"
+                              data-i18n-title="重新整理"
+                              data-i18n-aria-label="重新整理"
+                              ><svg
+                                aria-hidden="true"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                              >
+                                <path
+                                  d="M20 7v5h-5M4 17v-5h5M6.1 6.1A8.3 8.3 0 0 1 20 12M4 12a8.3 8.3 0 0 0 13.9 5.9"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                /></svg
+                              ><span id="c2-refresh-sd-label" class="sr-only" data-i18n="refresh"
+                                >重新整理</span
+                              ></button
+                            ></div
+                          >
+                          <label for="c2-sd-files" class="sr-only" data-i18n="selectFile"
+                            >選擇檔案</label
+                          >
+                          <select
+                            id="c2-sd-files"
+                            data-user-content
+                            class="form-control sd-list"
+                            size="4"
+                            disabled
+                          ></select>
+                          <p id="c2-sd-info" class="field-help" data-i18n="尚未讀取 SD 卡。"
+                            >尚未讀取 SD 卡。</p
+                          >
+                        </div></details
                       >
-                      <label for="c2-sd-files" class="sr-only" data-i18n="selectFile"
-                        >選擇檔案</label
+                    </div>
+                    <aside class="device-thumbnail" aria-labelledby="thumbnail-title">
+                      <h2 id="thumbnail-title" data-i18n="檔案縮圖">檔案縮圖</h2>
+                      <div
+                        id="c2-local-preview"
+                        class="project-stage"
+                        aria-label="檔案 2D 預覽"
+                        data-i18n-aria-label="檔案 2D 預覽"
                       >
-                      <select
-                        id="c2-sd-files"
-                        data-user-content
-                        class="form-control sd-list"
-                        size="4"
-                        disabled
-                      ></select>
-                      <p id="c2-sd-info" class="field-help" data-i18n="尚未讀取 SD 卡。"
-                        >尚未讀取 SD 卡。</p
+                        <div id="c2-preview-canvas-wrap" class="project-canvas-wrap">
+                          <canvas id="c2-preview-canvas" width="960" height="960"></canvas>
+                        </div>
+                        <div class="project-stage-footer">
+                          <span id="c2-preview-machine-size">Cubiio · 100 × 100 mm</span>
+                          <span class="canvas-bounds"
+                            ><span id="c2-preview-x">X &mdash;</span><span aria-hidden="true"> · </span
+                            ><span id="c2-preview-y">Y &mdash;</span></span
+                          >
+                          <span id="c2-preview-zoom-value">100%</span>
+                        </div>
+                        <div id="c2-preview-warning" class="sr-only" hidden></div>
+                      </div>
+                      <output
+                        id="c2-machine-info"
+                        class="mt-2 block text-xs break-words"
+                        aria-label="裝置機型與序號"
+                        data-i18n="等待裝置資料"
+                        data-i18n-aria-label="裝置機型與序號"
+                        >等待裝置資料</output
                       >
-                    </div></details
-                  >
+                    </aside>
+                  </div>
                 </li>
                 <li class="workflow-step">
                   <section aria-labelledby="job-title">
@@ -7406,18 +7669,12 @@
                         ></div
                       >
                     </div>
-                    <div id="c2-class4-box" class="class4-box" data-active="false">
+                    <div id="c2-class4-box" class="class4-box" data-active="false" data-class="">
                       <div class="class4-row">
-                        <label class="class4-switch-label" for="c2-class4-toggle">
-                          <input
-                            id="c2-class4-toggle"
-                            class="class4-switch"
-                            type="checkbox"
-                            disabled
-                          />
-                          <span data-i18n="Class 4 模式">Class 4 模式</span>
-                          <span id="c2-class4-badge" class="class4-badge">OFF</span>
-                        </label>
+                        <div class="class4-switch-label">
+                          <span data-i18n="雷射安全等級">雷射安全等級</span>
+                          <span id="c2-class4-badge" class="class4-badge">&mdash;</span>
+                        </div>
                         <button
                           id="c2-class4-changepw"
                           class="action-button"
@@ -7431,42 +7688,12 @@
                         id="c2-class4-hint"
                         class="field-help"
                         style="margin-top: 0.4rem; margin-bottom: 0"
-                        data-i18n="解除護目罩互鎖與加工角度限制，加工前須輸入 4 位數字密碼。"
-                      >解除護目罩互鎖與加工角度限制，加工前須輸入 4 位數字密碼。</p>
+                        data-i18n="依護目罩霍爾感測自動判定 Class 1／Class 4；Class 4 加工前須輸入 4 位數字密碼。"
+                      >依護目罩霍爾感測自動判定 Class 1／Class 4；Class 4 加工前須輸入 4 位數字密碼。</p>
                     </div>
                   </section>
                 </li>
               </ol>
-              <aside class="device-thumbnail" aria-labelledby="thumbnail-title">
-                <h2 id="thumbnail-title" data-i18n="檔案縮圖">檔案縮圖</h2>
-                <div
-                  id="c2-local-preview"
-                  class="project-stage"
-                  aria-label="檔案 2D 預覽"
-                  data-i18n-aria-label="檔案 2D 預覽"
-                >
-                  <div id="c2-preview-canvas-wrap" class="project-canvas-wrap">
-                    <canvas id="c2-preview-canvas" width="960" height="960"></canvas>
-                  </div>
-                  <div class="project-stage-footer">
-                    <span id="c2-preview-machine-size">Cubiio · 100 × 100 mm</span>
-                    <span class="canvas-bounds"
-                      ><span id="c2-preview-x">X &mdash;</span><span aria-hidden="true"> · </span
-                      ><span id="c2-preview-y">Y &mdash;</span></span
-                    >
-                    <span id="c2-preview-zoom-value">100%</span>
-                  </div>
-                  <div id="c2-preview-warning" class="sr-only" hidden></div>
-                </div>
-                <output
-                  id="c2-machine-info"
-                  class="block text-sm break-words"
-                  aria-label="裝置機型與序號"
-                  data-i18n="等待裝置資料"
-                  data-i18n-aria-label="裝置機型與序號"
-                  >等待裝置資料</output
-                >
-              </aside>
             </div>
           </section>
 
@@ -7682,7 +7909,7 @@
               <div id="c2-c4-setpw-error" class="dialog-inline-error" role="alert"></div>
               <div class="mt-3 flex justify-end gap-3">
                 <button id="c2-c4-setpw-cancel" class="action-button" type="button" data-i18n="cancel">取消</button>
-                <button id="c2-c4-setpw-submit" class="action-button danger" type="submit" data-i18n="儲存密碼並啟用">儲存密碼並啟用</button>
+                <button id="c2-c4-setpw-submit" class="action-button primary" type="submit" data-i18n="儲存密碼並啟用">儲存密碼並啟用</button>
               </div>
             </form>
           </dialog>
@@ -7700,7 +7927,7 @@
               <div id="c2-c4-auth-error" class="dialog-inline-error" role="alert"></div>
               <div class="mt-3 flex justify-end gap-3">
                 <button id="c2-c4-auth-cancel" class="action-button" type="button" data-i18n="cancel">取消</button>
-                <button id="c2-c4-auth-submit" class="action-button danger" type="submit" data-i18n="驗證並開始加工">驗證並開始加工</button>
+                <button id="c2-c4-auth-submit" class="action-button primary" type="submit" data-i18n="驗證並開始加工">驗證並開始加工</button>
               </div>
             </form>
           </dialog>
@@ -7990,6 +8217,7 @@
         let requestId = 0;
         let busy = false;
         let uploadRunning = false;
+        let uploadActivity = null;
         let uploadCancelled = false;
         let localBytes = null;
         let localMeta = null;
@@ -8116,6 +8344,7 @@
           const err = kv.err !== undefined ? kv.err === "1" : Boolean(prev?.err);
           const prog = kv.prog !== undefined ? Number(kv.prog) : (prev?.prog ?? 0);
           const class4 = kv.class4 !== undefined ? kv.class4 === "1" : Boolean(prev?.class4);
+          const shield = kv.shield !== undefined ? kv.shield === "1" : prev?.shield;
           const c4pw = kv.c4pw !== undefined ? kv.c4pw === "1" : Boolean(prev?.c4pw);
           const sn = kv.sn !== undefined ? kv.sn : (prev?.sn ?? "");
           let acc = prev?.acc || null;
@@ -8168,6 +8397,7 @@
             err,
             prog: Number.isFinite(prog) ? Math.max(0, Math.min(100, prog)) : 0,
             class4,
+            shield,
             c4pw,
             sn,
             acc,
@@ -9766,19 +9996,27 @@
           return endReply;
         }
 
+        function setUploadActivity(filename, done, total, rate, tag, via) {
+          const pct = total > 0 ? Math.min(100, Math.max(0, (done / total) * 100)) : 0;
+          uploadActivity = { filename, done, total, percent: pct, rate: rate || 0, tag: tag || "", via: via || "BLE" };
+          renderProcessingStatus(info(), fresh());
+        }
+
         async function uploadSelectedFile() {
           if (!localBytes || !localType || uploadRunning) return;
           const remoteName = localUploadName;
           uploadRunning = true;
           uploadCancelled = false;
-          renderDevice();
           try {
             const { bytes: uploadBytes, savedPct, format } = prepareUploadPayload(localBytes, localType);
             const tag = [format, savedPct > 0 ? `-${savedPct}%` : ""].filter(Boolean).join(" ");
+            setUploadActivity(remoteName, 0, uploadBytes.length, 0, tag, "BLE");
+            renderDevice();
             const t0 = performance.now();
             await transferFile(uploadBytes, remoteName, (done, total, rate) => {
               byId("c2-upload-progress").style.width = ((done / total) * 100).toFixed(1) + "%";
               setUiText(byId("c2-file-info"), () => ui("已傳送 ") + done.toLocaleString() + " / " + total.toLocaleString() + " bytes · " + (rate / 1024).toFixed(2) + " KiB/s" + (tag ? ` (${tag})` : ""));
+              setUploadActivity(remoteName, done, total, rate, tag, "BLE");
             });
             const sec = Math.max(0.1, (performance.now() - t0) / 1000);
             const avgKib = (uploadBytes.length / 1024 / sec).toFixed(2);
@@ -9791,6 +10029,7 @@
             }
             setMessage(() => ui("已儲存至 SD /CUBIIO/") + remoteName + ` (${avgKib} KiB/s` + (tag ? `, ${tag}` : "") + ")" + (previewSaved ? ui("；預覽截圖已保存在此瀏覽器。") : "。"));
             uploadRunning = false;
+            uploadActivity = null;
             await request("STATUS").catch(() => {});
             await listSd(remoteName);
           } catch (error) {
@@ -9799,6 +10038,7 @@
             setMessage(() => errText(error), true);
           } finally {
             uploadRunning = false;
+            uploadActivity = null;
             renderDevice();
           }
         }
@@ -9816,11 +10056,12 @@
           const remoteName = localUploadName;
           uploadRunning = true;
           uploadCancelled = false;
-          renderDevice();
           let usbLink = null;
           try {
             const { bytes: uploadBytes, savedPct, format } = prepareUploadPayload(localBytes, localType);
             const tag = [format, savedPct > 0 ? `-${savedPct}%` : ""].filter(Boolean).join(" ");
+            setUploadActivity(remoteName, 0, uploadBytes.length, 0, tag, "USB");
+            renderDevice();
             setUiText(byId("c2-file-info"), () => pair("正在開啟 USB 連線並等待機台就緒…", "Opening USB serial and waiting for board..."));
             usbLink = new UsbSerialLink(usb.port);
             await usbLink.open();
@@ -9828,6 +10069,7 @@
             await transferFileViaUsb(usbLink, uploadBytes, remoteName, (done, total, rate) => {
               byId("c2-upload-progress").style.width = ((done / total) * 100).toFixed(1) + "%";
               setUiText(byId("c2-file-info"), () => "USB " + ui("已傳送 ") + done.toLocaleString() + " / " + total.toLocaleString() + " bytes · " + (rate / 1024).toFixed(2) + " KiB/s" + (tag ? ` (${tag})` : ""));
+              setUploadActivity(remoteName, done, total, rate, tag, "USB");
             });
             const sec = Math.max(0.1, (performance.now() - t0) / 1000);
             const avgKib = (uploadBytes.length / 1024 / sec).toFixed(2);
@@ -9846,6 +10088,7 @@
           } finally {
             if (usbLink) await usbLink.close().catch(() => {});
             uploadRunning = false;
+            uploadActivity = null;
             renderDevice();
             if (ble.link?.connected) listSd(remoteName).catch(() => {});
           }
@@ -9984,6 +10227,16 @@
           return processEditTail;
         }
 
+        function isClass4State(status, available) {
+          if (!available || !status) return false;
+          if (typeof status.shield === "boolean") return !status.shield;
+          const shieldV = status?.hall?.shieldV;
+          if (typeof shieldV === "number" && Number.isFinite(shieldV)) {
+            return Math.abs(shieldV - 1.0) < 0.10;
+          }
+          return Boolean(status.class4);
+        }
+
         // --- UI Status Rendering ---
         function renderProcessingStatus(status, available) {
           const message = byId("c2-message");
@@ -10001,12 +10254,26 @@
             return;
           }
 
-          let title, detail = "", tone = "idle";
           if (uploadRunning) {
-            title = ui("檔案上傳中");
-            detail = byId("c2-file-info").textContent;
-            tone = "active";
-          } else if (busy) {
+            const act = uploadActivity;
+            const pct = Math.max(0, Math.min(100, Number(act?.percent) || 0));
+            const detailText = act && act.total > 0
+              ? `${act.via} ${ui("已傳送 ")}${act.done.toLocaleString()} / ${act.total.toLocaleString()} bytes${act.rate > 0 ? ` · ${(act.rate / 1024).toFixed(2)} KiB/s` : ""}${act.tag ? ` (${act.tag})` : ""}`
+              : (byId("c2-file-info")?.textContent || ui("正在上傳至 SD…"));
+            byId("c2-device-status").dataset.tone = "active";
+            setUiText(byId("c2-process-state"), () => ui("檔案上傳中"));
+            byId("c2-process-state").style.color = "";
+            setUiText(byId("c2-process-detail"), () => detailText);
+            byId("c2-job-timing").hidden = false;
+            setUiText(byId("c2-job-duration"), () => act?.filename ? `${act.via} · ${act.filename}` : ui("檔案上傳中"));
+            byId("c2-job-progress").setAttribute("aria-label", ui("檔案上傳進度"));
+            byId("c2-job-progress").value = pct;
+            byId("c2-job-percent").textContent = pct.toFixed(1) + "%";
+            return;
+          }
+
+          let title, detail = "", tone = "idle";
+          if (busy) {
             title = ui("處理中");
             tone = "active";
           } else if (!available) {
@@ -10090,13 +10357,30 @@
             ? `[Cubiio Mega2560][SN: ${status.sn || MISSING}]`
             : usbOn ? ui("USB 已就緒（僅韌體更新）") : ui("等待裝置資料"));
 
-          // Shield Hall sensor readout
-          const shieldV = status?.hall?.shieldV;
-          const shieldKnown = available && typeof shieldV === "number" && Number.isFinite(shieldV);
-          const shieldAlert = Boolean(available && status?.shieldAbort);
-          setUiText(byId("c2-door"), () => !shieldKnown ? MISSING : shieldAlert ? ui("護目罩異常") : `${shieldV.toFixed(2)} V`);
-          byId("c2-door-readout").dataset.alert = String(shieldAlert);
-          byId("c2-door-readout").setAttribute("aria-label", shieldKnown ? `${ui("護目罩霍爾感測器")} ${shieldV.toFixed(2)} V` : ui("護目罩狀態未知"));
+          // Shield Hall sensor readout: Green Class 1 / Red Class 4 (auto-detected, no voltage)
+          const c4Active = isClass4State(status, available);
+          const doorReadout = byId("c2-door-readout");
+          if (!available) {
+            setUiText(byId("c2-door"), () => MISSING);
+            doorReadout.dataset.class = "";
+            doorReadout.dataset.alert = "false";
+            doorReadout.title = ui("護目罩霍爾感測器");
+            doorReadout.setAttribute("aria-label", ui("護目罩狀態未知"));
+          } else if (c4Active) {
+            setUiText(byId("c2-door"), () => "Class 4");
+            doorReadout.dataset.class = "class4";
+            doorReadout.dataset.alert = "true";
+            const c4Label = ui("Class 4（未裝護目罩，加工需驗證 4 位密碼）");
+            doorReadout.title = c4Label;
+            doorReadout.setAttribute("aria-label", c4Label);
+          } else {
+            setUiText(byId("c2-door"), () => "Class 1");
+            doorReadout.dataset.class = "class1";
+            doorReadout.dataset.alert = "false";
+            const c1Label = ui("Class 1（護目罩已安裝）");
+            doorReadout.title = c1Label;
+            doorReadout.setAttribute("aria-label", c1Label);
+          }
 
           // Laser temperature readout
           const temp = status?.temp;
@@ -10133,34 +10417,40 @@
           const hasLocalBounds = Boolean(activePreviewSource === "local" && localPreviewModel()?.bounds);
           byId("c2-home").disabled = !canControl || working;
           byId("c2-preview-box").disabled = !canControl || working || (!entry && !hasLocalBounds);
-          byId("c2-run-file").disabled = !canControl || working || !entry;
+          const isResumeMode = working && paused;
+          const canStart = canControl && !working && Boolean(entry);
+          const canResume = !resumingProcess && canControl && isResumeMode && !(status?.thermalPaused && !status?.thermalResumeReady);
+          const runBtn = byId("c2-run-file");
+          runBtn.disabled = isResumeMode ? !canResume : !canStart;
+          runBtn.dataset.mode = isResumeMode ? "resume" : "start";
+          const runActionText = ui(isResumeMode ? "繼續" : "開始");
+          runBtn.title = runActionText;
+          runBtn.setAttribute("aria-label", runActionText);
+          setUiText(byId("c2-run-file-label"), () => runActionText);
           byId("c2-pause").disabled = !canControl || !working || paused || Boolean(status?.previewing);
-          byId("c2-resume").disabled = resumingProcess || !canControl || !working || !paused || (status?.thermalPaused && !status?.thermalResumeReady);
           byId("c2-stop").disabled = !available || (!working && !status?.laserFlag);
           byId("c2-retry").hidden = !(available && status?.err);
           byId("c2-retry").disabled = !canControl || !status?.err;
 
-          // Class 4 Mode switch & password controls
-          const c4Active = Boolean(available && status?.class4);
+          // Auto-detected Class 1 / Class 4 status & SD PIN controls (no manual mode toggle)
           const c4PwSet = Boolean(available && status?.c4pw);
           const c4Box = byId("c2-class4-box");
-          const c4Toggle = byId("c2-class4-toggle");
           const c4Badge = byId("c2-class4-badge");
           const c4ChangePw = byId("c2-class4-changepw");
           const c4Hint = byId("c2-class4-hint");
-          if (c4Box && c4Toggle && c4Badge && c4ChangePw && c4Hint) {
+          if (c4Box && c4Badge && c4ChangePw && c4Hint) {
             c4Box.dataset.active = String(c4Active);
-            c4Toggle.checked = c4Active;
-            c4Toggle.disabled = !canControl || working;
+            c4Box.dataset.class = !available ? "" : c4Active ? "class4" : "class1";
             c4ChangePw.disabled = !canControl || working;
-            c4Badge.textContent = c4Active ? "CLASS 4 ON" : "OFF";
+            setUiText(c4ChangePw, () => ui(c4PwSet ? "變更密碼" : "設定密碼"));
+            c4Badge.textContent = !available ? MISSING : c4Active ? "CLASS 4" : "CLASS 1";
             setUiText(c4Hint, () => !available
-              ? ui("解除護目罩互鎖與加工角度限制，加工前須輸入 4 位數字密碼。")
+              ? pair("依護目罩霍爾感測自動判定 Class 1／Class 4；Class 4 加工前須輸入 4 位數字密碼。", "Auto-detects Class 1 / Class 4 via shield Hall sensor; Class 4 requires a 4-digit PIN.")
               : c4Active
-                ? pair("Class 4 已啟用：護目罩與角度限制已解除，開始加工前須輸入 4 位密碼。", "Class 4 active: shield & angle limits unlocked; 4-digit PIN required before machining.")
-                : c4PwSet
-                  ? pair("已設定 SD 卡密碼；開啟 Class 4 可解除護目罩與角度限制。", "SD PIN configured; turn on Class 4 to unlock shield & angle limits.")
-                  : pair("首次開啟須設定 4 位數字密碼（預設 0000，存入 SD 卡）。", "First activation requires setting a 4-digit PIN (default 0000, saved to SD)."));
+                ? (c4PwSet
+                  ? pair("目前為 Class 4（未裝護目罩）：加工前須輸入 4 位密碼，並自動解除護目罩與朝下角度限制。", "Class 4 detected (no shield): 4-digit PIN required before machining; shield & tilt limits unlocked.")
+                  : pair("目前為 Class 4（未裝護目罩）：首次加工前須設定 4 位數字密碼（預設 0000，存入 SD 卡）。", "Class 4 detected (no shield): set a 4-digit PIN (default 0000, saved to SD) before first run."))
+                : pair("目前為 Class 1（護目罩已安裝）：可直接加工，無需輸入密碼。", "Class 1 detected (shield installed): ready to machine directly without PIN."));
           }
 
           document.dispatchEvent(new CustomEvent("cubiio2-device-status", {
@@ -10373,7 +10663,7 @@
           return /^\d{4}$/.test(String(val || "").trim());
         }
 
-        function openClass4SetPinDialog({ enableAfter = false, isFirstTime = false } = {}) {
+        function openClass4SetPinDialog({ autoAuth = false, isFirstTime = false } = {}) {
           return new Promise(resolve => {
             const dlg = byId("c2-class4-setpw-dialog");
             const form = byId("c2-c4-setpw-form");
@@ -10386,7 +10676,7 @@
             const cancelBtn = byId("c2-c4-setpw-cancel");
 
             setUiText(titleEl, () => ui(isFirstTime ? "Class 4 首次密碼設定" : "變更 Class 4 密碼"));
-            setUiText(submitBtn, () => ui(enableAfter ? "儲存密碼並啟用" : "儲存新密碼"));
+            setUiText(submitBtn, () => ui(autoAuth ? "驗證並開始加工" : "儲存新密碼"));
             oldIn.value = isFirstTime ? "0000" : "";
             newIn.value = "";
             confIn.value = "";
@@ -10421,8 +10711,8 @@
               errEl.textContent = "";
               try {
                 await request(`C4_SETPW ${oldPin} ${newPin}`, 15000);
-                if (enableAfter) {
-                  await request("C4_MODE 1", 10000);
+                if (autoAuth) {
+                  await request(`C4_AUTH ${newPin}`, 10000);
                 }
                 await request("STATUS", 6000).catch(() => {});
                 cleanup(true);
@@ -10497,49 +10787,12 @@
           });
         }
 
-        byId("c2-class4-toggle").addEventListener("change", async event => {
-          const wantOn = Boolean(event.target.checked);
-          if (busy || uploadRunning || !fresh() || info()?.work) {
-            renderDevice();
-            return;
-          }
-          busy = true;
-          renderDevice();
-          try {
-            if (!wantOn) {
-              await request("C4_MODE 0", 10000);
-              await request("STATUS", 6000).catch(() => {});
-              setMessage(() => ui("已關閉 Class 4 模式（恢復護目罩與角度保護）。"));
-            } else if (!info()?.c4pw) {
-              // 第一次開啟：強制設定 4 位數字密碼（預設 0000，存入 SD 卡）
-              const ok = await openClass4SetPinDialog({ enableAfter: true, isFirstTime: true });
-              if (ok) {
-                setMessage(() => ui("已啟用 Class 4 模式（護目罩與角度限制已解除）。"));
-              }
-            } else {
-              await request("C4_MODE 1", 10000);
-              await request("STATUS", 6000).catch(() => {});
-              setMessage(() => ui("已啟用 Class 4 模式（護目罩與角度限制已解除）。"));
-            }
-          } catch (error) {
-            if (error?.code === "CLASS4_PIN_NOT_SET") {
-              const ok = await openClass4SetPinDialog({ enableAfter: true, isFirstTime: true });
-              if (ok) setMessage(() => ui("已啟用 Class 4 模式（護目罩與角度限制已解除）。"));
-            } else {
-              setMessage(() => errText(error), true);
-            }
-          } finally {
-            busy = false;
-            renderDevice();
-          }
-        });
-
         byId("c2-class4-changepw").addEventListener("click", async () => {
           if (busy || uploadRunning || !fresh() || info()?.work) return;
           busy = true;
           renderDevice();
           try {
-            const ok = await openClass4SetPinDialog({ enableAfter: false, isFirstTime: !info()?.c4pw });
+            const ok = await openClass4SetPinDialog({ autoAuth: false, isFirstTime: !info()?.c4pw });
             if (ok) {
               setMessage(() => ui("Class 4 密碼已更新並寫入 SD 卡。"));
             }
@@ -10550,15 +10803,36 @@
         });
 
         byId("c2-run-file").addEventListener("click", async () => {
+          const st = info();
+          const isPausedJob = Boolean(st?.work && (st?.pause || st?.thermalPaused));
+          if (isPausedJob) {
+            if (resumingProcess || busy || uploadRunning) return;
+            resumingProcess = true;
+            renderDevice();
+            try {
+              await flushProcessEdit();
+              const latest = info();
+              const cmd = latest?.thermalPaused ? "TRESUME" : currentJobType === "bmp" ? "RRESUME" : "GRESUME";
+              await send(cmd);
+              await request("FAST").catch(() => {});
+            } catch (_) {} finally {
+              resumingProcess = false;
+              renderDevice();
+            }
+            return;
+          }
           const entry = selectedSdEntry();
           if (!entry || busy || uploadRunning) return;
           busy = true;
           renderDevice();
           try {
             const settings = validateJobSettings();
-            // Class 4 模式下，開始加工出光前強制輸入 4 位數字密碼驗證
-            if (info()?.class4) {
-              const authed = await openClass4AuthDialog(entry.name);
+            // 護目罩狀態為 Class 4 時，開始加工出光前自動依 Class 4 驗證 4 位數字密碼
+            const latestStatus = info();
+            if (isClass4State(latestStatus, fresh())) {
+              const authed = !latestStatus?.c4pw
+                ? await openClass4SetPinDialog({ autoAuth: true, isFirstTime: true })
+                : await openClass4AuthDialog(entry.name);
               if (!authed) {
                 setMessage(() => ui("已取消 Class 4 密碼驗證。"));
                 return;
@@ -10589,22 +10863,6 @@
           const cmd = currentJobType === "bmp" ? "RPAUSE" : "GPAUSE";
           await send(cmd).catch(() => {});
           await request("FAST").catch(() => {});
-        });
-
-        byId("c2-resume").addEventListener("click", async () => {
-          if (resumingProcess) return;
-          resumingProcess = true;
-          renderDevice();
-          try {
-            await flushProcessEdit();
-            const st = info();
-            const cmd = st?.thermalPaused ? "TRESUME" : currentJobType === "bmp" ? "RRESUME" : "GRESUME";
-            await send(cmd);
-            await request("FAST").catch(() => {});
-          } catch (_) {} finally {
-            resumingProcess = false;
-            renderDevice();
-          }
         });
 
         byId("c2-stop").addEventListener("click", async () => {
@@ -10703,6 +10961,78 @@
         }
         byId("c2-file").addEventListener("change", () => loadLocalFileObject(byId("c2-file").files[0]));
 
+        function canUploadProject() {
+          const st = info();
+          return Boolean(bleReady() && fresh() && !busy && !uploadRunning && !st?.work);
+        }
+
+        async function uploadProjectFile(blob, filename, onProgress) {
+          if (!canUploadProject()) {
+            throw makeUiError(() => ui("請先透過 BLE 連線 Cubiio。"));
+          }
+          const rawBytes = new Uint8Array(await blob.arrayBuffer());
+          let type, remoteName, preview = null;
+          if (/\.bmp$/i.test(filename)) {
+            const meta = parseBitmap(rawBytes);
+            type = "bmp";
+            remoteName = toFat83Name(filename, "bmp");
+            const wMm = meta.width / meta.pxPerMmX;
+            const hMm = meta.height / meta.pxPerMmY;
+            preview = {
+              kind: "bmp",
+              meta,
+              bytes: rawBytes,
+              bounds: { minX: -wMm / 2, minY: -hMm / 2, maxX: wMm / 2, maxY: hMm / 2 }
+            };
+          } else if (/\.(?:gcode|nc|txt)$/i.test(filename)) {
+            await validateGcode(rawBytes);
+            type = "gcode";
+            remoteName = toFat83Name(filename, "gcode");
+            preview = {
+              kind: "gcode",
+              ...parseGcodePreview(decoder.decode(rawBytes))
+            };
+          } else {
+            throw makeUiError(() => ui("僅支援 .bmp、.gcode、.nc 或 .txt。"));
+          }
+          uploadRunning = true;
+          uploadCancelled = false;
+          try {
+            const { bytes: uploadBytes, savedPct, format } = prepareUploadPayload(rawBytes, type);
+            const tag = [format, savedPct > 0 ? `-${savedPct}%` : ""].filter(Boolean).join(" ");
+            setUploadActivity(remoteName, 0, uploadBytes.length, 0, tag, "BLE");
+            renderDevice();
+            const t0 = performance.now();
+            await transferFile(uploadBytes, remoteName, (done, total, rate) => {
+              setUploadActivity(remoteName, done, total, rate, tag, "BLE");
+              if (typeof onProgress === "function") {
+                onProgress({ done, total, rate, percent: total ? (done / total) * 100 : 100, tag });
+              }
+            });
+            const sec = Math.max(0.1, (performance.now() - t0) / 1000);
+            const avgKib = (uploadBytes.length / 1024 / sec).toFixed(2);
+            if (preview) {
+              preview._sdSize = uploadBytes.length;
+              sdPreviewCache.set(remoteName, preview);
+              await saveLocalSdPreview(remoteName, uploadBytes.length, preview).catch(() => false);
+            }
+            setMessage(() => ui("已儲存至 SD /CUBIIO/") + remoteName + ` (${avgKib} KiB/s` + (tag ? `, ${tag}` : "") + ")。");
+            uploadRunning = false;
+            uploadActivity = null;
+            await request("STATUS").catch(() => {});
+            await listSd(remoteName).catch(() => {});
+            return { remoteName, bytes: uploadBytes.length, avgKib, tag };
+          } catch (error) {
+            await request("UP_ABORT", 4000).catch(() => {});
+            setMessage(() => errText(error), true);
+            throw error;
+          } finally {
+            uploadRunning = false;
+            uploadActivity = null;
+            renderDevice();
+          }
+        }
+
         async function loadLocalBlob(blob, filename) {
           const file = new File([blob], filename, { type: blob.type || "application/octet-stream" });
           const ok = await loadLocalFileObject(file);
@@ -10760,6 +11090,9 @@
           updateFirmware,
           listSd: (preferred, opts) => listSd(preferred, opts),
           loadLocalBlob,
+          canUploadProject,
+          uploadProjectFile,
+          cancelUpload: () => { uploadCancelled = true; },
           errorText: errText
         };
 
@@ -10811,10 +11144,13 @@
           layers: [],
           selectedId: null,
           nextId: 1,
-          activeTab: "upload",
+          activeTab: null,
           revision: 0,
           converted: null,
-          conversionActivated: false
+          brushActive: false,
+          brushStroke: null,
+          uploadingToSd: false,
+          positionReference: "center"
         };
         const pointers = new Map;
         let interaction = null;
@@ -10874,13 +11210,27 @@
             y: layer.y - dy
           };
         }
+        function layerBoundingBox(layer) {
+          const corners = [
+            layerLocalToWorld(layer, -layer.width / 2, -layer.height / 2),
+            layerLocalToWorld(layer, layer.width / 2, -layer.height / 2),
+            layerLocalToWorld(layer, layer.width / 2, layer.height / 2),
+            layerLocalToWorld(layer, -layer.width / 2, layer.height / 2)
+          ];
+          return {
+            minX: Math.min(...corners.map(c => c.x)),
+            maxX: Math.max(...corners.map(c => c.x)),
+            minY: Math.min(...corners.map(c => c.y)),
+            maxY: Math.max(...corners.map(c => c.y))
+          };
+        }
         function hitLayer(layer, point) {
           const dx = point.x - layer.x;
           const dy = -(point.y - layer.y);
           const angle = layer.rotation * Math.PI / 180;
           const localX = dx * Math.cos(angle) + dy * Math.sin(angle);
           const localY = -dx * Math.sin(angle) + dy * Math.cos(angle);
-          return Math.abs(localX) <= layer.width / 2 && Math.abs(localY) <= layer.height / 2;
+          return Math.abs(localX) <= Math.max(layer.width / 2, 2) && Math.abs(localY) <= Math.max(layer.height / 2, 2);
         }
         function layerHandles(layer) {
           const t = transformMetrics();
@@ -10901,8 +11251,26 @@
             ctx.font = `${layer.fontSize}px ${JSON.stringify(layer.font)}`;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(layer.text, 0, 0);
-          } else {
+            const lines = String(layer.text || "").split(/\r?\n/);
+            const lineH = layer.fontSize * 1.15;
+            const startY = -((lines.length - 1) * lineH) / 2;
+            lines.forEach((line, idx) => ctx.fillText(line, 0, startY + idx * lineH));
+          } else if (layer.type === "drawing") {
+            ctx.strokeStyle = "#000000";
+            ctx.lineWidth = 0.35;
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+            for (const path of layer.paths || []) {
+              if (!path || path.length < 2) continue;
+              ctx.beginPath();
+              ctx.moveTo(path[0].x * layer.width, path[0].y * layer.height);
+              for (let i = 1; i < path.length; i++) {
+                ctx.lineTo(path[i].x * layer.width, path[i].y * layer.height);
+              }
+              if (path.closed) ctx.closePath();
+              ctx.stroke();
+            }
+          } else if (layer.image) {
             ctx.drawImage(layer.image, -layer.width / 2, -layer.height / 2, layer.width, layer.height);
           }
           ctx.restore();
@@ -10938,7 +11306,6 @@
           project.converted = null;
           conversionToken++;
           window.Cubiio2Core.cancelCompute("project");
-          $("project-convert").disabled = false;
           $("project-compute-status").hidden = true;
           clearTimeout(conversionTimer);
           setExportButtons(null);
@@ -10946,8 +11313,9 @@
           if (message) setUiText($("project-export-status"), () => message);
         }
         function markProjectChanged() {
-          invalidateConversion(project.conversionActivated ? "內容已變更，請重新轉檔。" : "");
+          invalidateConversion();
           updateOutputOptions();
+          if (project.activeTab === "output") scheduleConversion();
           if (!interaction) historyController?.commit();
         }
         function renderProject() {
@@ -10996,6 +11364,18 @@
           context.rect(0, 0, machine.width, machine.height);
           context.clip();
           if (showingConversion()) drawConvertedPreview(context, project.converted); else for (const layer of orderedLayers()) drawLayer(context, layer, machine.width, machine.height);
+          if (project.brushStroke && project.brushStroke.length > 1) {
+            context.strokeStyle = colors.accent;
+            context.lineWidth = Math.max(0.35, 1.4 / t.scale);
+            context.lineCap = "round";
+            context.lineJoin = "round";
+            context.beginPath();
+            context.moveTo(project.brushStroke[0].x + machine.halfWidth, machine.halfHeight - project.brushStroke[0].y);
+            for (let i = 1; i < project.brushStroke.length; i++) {
+              context.lineTo(project.brushStroke[i].x + machine.halfWidth, machine.halfHeight - project.brushStroke[i].y);
+            }
+            context.stroke();
+          }
           context.restore();
           // Origin (0,0) center marker
           context.beginPath();
@@ -11003,7 +11383,7 @@
           context.fillStyle = colors.accent;
           context.fill();
           const layer = selectedLayer();
-          if (layer && !showingConversion()) {
+          if (layer && !showingConversion() && !project.brushActive) {
             context.save();
             context.translate(layer.x + machine.halfWidth, machine.halfHeight - layer.y);
             context.rotate(layer.rotation * Math.PI / 180);
@@ -11056,15 +11436,44 @@
           view.panY = 0;
           renderProject();
         }
-        function setProjectTab(name) {
-          project.activeTab = name;
-          document.querySelectorAll("[data-project-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.projectTab === name)));
-          document.querySelectorAll("[data-project-panel]").forEach(panel => {
-            panel.hidden = panel.dataset.projectPanel !== name;
-          });
+        function setBrushMode(active) {
+          project.brushActive = Boolean(active);
+          if (!project.brushActive) project.brushStroke = null;
+          canvas.dataset.cursor = project.brushActive ? "crosshair" : "";
+          const activateBtn = $("project-brush-activate");
+          const finishBtn = $("project-brush-finish");
+          if (activateBtn) activateBtn.disabled = project.brushActive;
+          if (finishBtn) finishBtn.disabled = !project.brushActive;
+          if (project.brushActive) {
+            setUiText($("project-live-status"), () => ui("畫筆模式：拖曳繪製線條（Esc 結束）"));
+          }
           renderProject();
         }
-        const layerDisplayName = layer => layer.type === "text" ? ui("文字 · ") + layer.text.slice(0, 24) : layer.name;
+        function setProjectTab(name, { forceOpen = false } = {}) {
+          const next = !forceOpen && name != null && project.activeTab === name ? null : name;
+          if (next !== "brush" && next != null && project.brushActive) setBrushMode(false);
+          project.activeTab = next;
+          const controls = document.querySelector(".project-controls");
+          if (controls) controls.dataset.panelOpen = String(Boolean(next));
+          const closeBtn = $("project-close-tool");
+          if (closeBtn) closeBtn.hidden = !next;
+          document.querySelectorAll("[data-project-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.projectTab === next)));
+          document.querySelectorAll("[data-project-panel]").forEach(panel => {
+            panel.hidden = panel.dataset.projectPanel !== next;
+          });
+          if (next === "output") {
+            updateOutputOptions();
+            if (!project.layers.length) {
+              invalidateConversion(ui("畫布沒有可轉檔的物件。"));
+            } else if (!project.converted || project.converted.revision !== project.revision) {
+              convertProject();
+            } else {
+              setExportButtons(project.converted);
+            }
+          }
+          renderProject();
+        }
+        const layerDisplayName = layer => layer.type === "text" ? ui("文字 · ") + layer.text.replace(/\s+/g, " ").slice(0, 24) : layer.name;
         let editingLayerId = null;
         function updateLayerControls(force = false) {
           const layer = selectedLayer();
@@ -11079,8 +11488,11 @@
           setUiText($("project-layer-name"), () => layer ? layerDisplayName(layer) : ui("未選取物件"));
           for (const id of [ "project-x", "project-y", "project-width", "project-height", "project-rotation", "project-duplicate", "project-delete" ]) $("" + id).disabled = !layer;
           if (layer) {
-            if (force || document.activeElement !== $("project-x") || editingLayerId !== project.selectedId) $("project-x").value = layer.x.toFixed(1);
-            if (force || document.activeElement !== $("project-y") || editingLayerId !== project.selectedId) $("project-y").value = layer.y.toFixed(1);
+            const ref = project.positionReference === "lower-left" ? layerBoundingBox(layer) : null;
+            const displayX = ref ? ref.minX : layer.x;
+            const displayY = ref ? ref.minY : layer.y;
+            if (force || document.activeElement !== $("project-x") || editingLayerId !== project.selectedId) $("project-x").value = displayX.toFixed(1);
+            if (force || document.activeElement !== $("project-y") || editingLayerId !== project.selectedId) $("project-y").value = displayY.toFixed(1);
             if (force || document.activeElement !== $("project-width") || editingLayerId !== project.selectedId) $("project-width").value = layer.width.toFixed(1);
             if (force || document.activeElement !== $("project-height") || editingLayerId !== project.selectedId) $("project-height").value = layer.height.toFixed(1);
             if (force || document.activeElement !== $("project-rotation") || editingLayerId !== project.selectedId) $("project-rotation").value = layer.rotation.toFixed(1);
@@ -11093,17 +11505,18 @@
           project.selectedId = id;
           historyController?.selectionChanged();
           updateLayerControls();
-          if (openEditor && id != null) setProjectTab("edit");
+          if (openEditor && id != null) setProjectTab("edit", { forceOpen: true });
         }
         function measureTextLayer(layer) {
           context.save();
           context.setTransform(1, 0, 0, 1, 0, 0);
           context.font = `${layer.fontSize}px ${JSON.stringify(layer.font)}`;
-          const width = Math.max(1, context.measureText(layer.text).width);
+          const lines = String(layer.text || "").split(/\r?\n/);
+          const width = Math.max(1, ...lines.map(line => context.measureText(line || " ").width));
           context.restore();
           return {
             width: width,
-            height: layer.fontSize * 1.15
+            height: Math.max(1, lines.length) * layer.fontSize * 1.15
           };
         }
         function sanitizeSvg(source) {
@@ -11292,6 +11705,18 @@
             interaction = null;
             return;
           }
+          if (project.brushActive) {
+            const world = screenToWorld(position.x, position.y);
+            const clamped = {
+              x: Math.min(project.machine.maxX, Math.max(project.machine.minX, world.x)),
+              y: Math.min(project.machine.maxY, Math.max(project.machine.minY, world.y))
+            };
+            project.brushStroke = [ clamped ];
+            interaction = { mode: "brush" };
+            canvas.dataset.cursor = "crosshair";
+            renderProject();
+            return;
+          }
           if (showingConversion()) {
             interaction = {
               mode: "pan",
@@ -11354,6 +11779,19 @@
             return;
           }
           if (!interaction) return;
+          if (interaction.mode === "brush" && project.brushStroke) {
+            const world = screenToWorld(position.x, position.y);
+            const clamped = {
+              x: Math.min(project.machine.maxX, Math.max(project.machine.minX, world.x)),
+              y: Math.min(project.machine.maxY, Math.max(project.machine.minY, world.y))
+            };
+            const last = project.brushStroke.at(-1);
+            if (!last || Math.hypot(clamped.x - last.x, clamped.y - last.y) >= 0.25) {
+              project.brushStroke.push(clamped);
+              renderProject();
+            }
+            return;
+          }
           const layer = selectedLayer();
           if (interaction.mode === "pan") {
             if (view.zoom === 1) {
@@ -11388,9 +11826,33 @@
         function endPointer(event) {
           pointers.delete(event.pointerId);
           if (pointers.size < 2) pinch = null;
+          const wasBrush = interaction?.mode === "brush";
           interaction = null;
+          if (wasBrush && project.brushStroke) {
+            const stroke = window.Cubiio2Core.drawing.stroke(project.brushStroke);
+            project.brushStroke = null;
+            if (stroke) {
+              const drawn = {
+                id: project.nextId++,
+                type: "drawing",
+                nativeVector: "drawing",
+                name: ui("畫筆") + " " + project.nextId,
+                x: Math.min(project.machine.maxX, Math.max(project.machine.minX, stroke.x)),
+                y: Math.min(project.machine.maxY, Math.max(project.machine.minY, stroke.y)),
+                width: stroke.width,
+                height: stroke.height,
+                rotation: 0,
+                paths: stroke.paths
+              };
+              project.layers.push(drawn);
+              markProjectChanged();
+              selectLayer(drawn.id, false);
+            } else {
+              renderProject();
+            }
+          }
           historyController?.commit();
-          canvas.dataset.cursor = "";
+          canvas.dataset.cursor = project.brushActive ? "crosshair" : "";
         }
         canvas.addEventListener("pointerup", endPointer);
         canvas.addEventListener("pointercancel", endPointer);
@@ -11421,7 +11883,13 @@
           }
           const before = [ layer.x, layer.y, layer.width, layer.height, layer.rotation ].join("|");
           const aspect = layer.width > 0 && layer.height > 0 ? layer.width / layer.height : 1;
-          if (changed === "project-x") layer.x = Math.min(project.machine.maxX, Math.max(project.machine.minX, value)); else if (changed === "project-y") layer.y = Math.min(project.machine.maxY, Math.max(project.machine.minY, value)); else if (changed === "project-width") {
+          if (changed === "project-x") {
+            const nextX = project.positionReference === "lower-left" ? layer.x + (value - layerBoundingBox(layer).minX) : value;
+            layer.x = Math.min(project.machine.maxX, Math.max(project.machine.minX, nextX));
+          } else if (changed === "project-y") {
+            const nextY = project.positionReference === "lower-left" ? layer.y + (value - layerBoundingBox(layer).minY) : value;
+            layer.y = Math.min(project.machine.maxY, Math.max(project.machine.minY, nextY));
+          } else if (changed === "project-width") {
             layer.width = Math.max(value, aspect);
             layer.height = layer.width / aspect;
           } else if (changed === "project-height") {
@@ -11577,7 +12045,7 @@
           return output;
         }
         function isNativeVectorLayer(layer) {
-          return layer.type !== "text" && layer.nativeVector === "svg";
+          return layer.type !== "text" && (layer.nativeVector === "svg" || layer.nativeVector === "drawing");
         }
         function isRasterLayer(layer) {
           return !isNativeVectorLayer(layer);
@@ -11700,10 +12168,33 @@
             host.remove();
           }
         }
+        function drawingLayerVectorPaths(layer, pxPerMm) {
+          const output = [];
+          for (const rawPath of layer.paths || []) {
+            if (!rawPath || rawPath.length < 2) continue;
+            const path = rawPath.map(pt => {
+              const world = layerLocalToWorld(layer, pt.x * layer.width, pt.y * layer.height);
+              return {
+                x: (world.x + project.machine.halfWidth) * pxPerMm,
+                y: (project.machine.halfHeight - world.y) * pxPerMm
+              };
+            });
+            if (rawPath.closed && (path[0].x !== path.at(-1).x || path[0].y !== path.at(-1).y)) {
+              path.push({ ...path[0] });
+            }
+            path.closed = Boolean(rawPath.closed);
+            output.push(path);
+          }
+          return output;
+        }
         async function collectNativeVectorPaths(pxPerMm, options) {
           const paths = [];
           for (const layer of orderedLayers()) {
-            const layerPaths = layer.nativeVector === "svg" ? svgLayerVectorPaths(layer, pxPerMm, options) : [];
+            const layerPaths = layer.nativeVector === "svg"
+              ? svgLayerVectorPaths(layer, pxPerMm, options)
+              : layer.nativeVector === "drawing"
+                ? drawingLayerVectorPaths(layer, pxPerMm)
+                : [];
             for (const path of layerPaths) {
               path.layerId = layer.id;
               path.layerName = layer.name;
@@ -11863,11 +12354,17 @@
           });
           return rawText;
         }
+        function resolveProjectExtension(format) {
+          return format === "svg" ? "svg" : format.startsWith("bmp") ? "bmp" : "nc";
+        }
         function resolveProjectFilename(format) {
           const raw = String($("project-filename")?.value || "");
           const stem = raw.toUpperCase().replace(/[^A-Z0-9_-]/g, "").slice(0, 8) || "WORK";
-          const ext = format === "svg" ? "svg" : format.startsWith("bmp") ? "bmp" : "nc";
-          return `${stem}.${ext}`;
+          return `${stem}.${resolveProjectExtension(format)}`;
+        }
+        function updateOutputSuffix() {
+          const el = $("project-output-suffix");
+          if (el) el.textContent = "." + resolveProjectExtension($("project-output-format").value);
         }
         $("project-filename")?.addEventListener("input", event => {
           const cleaned = String(event.target.value || "").toUpperCase().replace(/[^A-Z0-9_-]/g, "").slice(0, 8);
@@ -11876,14 +12373,27 @@
             project.converted.filename = resolveProjectFilename(project.converted.format);
           }
         });
+        function refreshExportStatusNote(converted) {
+          if (!converted || converted.revision !== project.revision || project.uploadingToSd) return;
+          const canUpload = Boolean(window.Cubiio2Device?.canUploadProject?.());
+          const suffix = converted.format === "svg"
+            ? " · " + ui("SVG 僅供下載；請改選 BMP 或 G-code 上傳至 SD 卡。")
+            : !canUpload
+              ? " · " + ui("連接 Cubiio 後可上傳至 SD 卡。")
+              : "";
+          setUiText($("project-export-status"), () => converted.status() + suffix);
+        }
         function setExportButtons(converted) {
+          updateOutputSuffix();
           const ready = Boolean(converted && converted.revision === project.revision);
-          $("project-download").disabled = !ready;
-          const sendBtn = $("project-send-device");
-          if (sendBtn) {
-            const sendable = ready && /\.(?:bmp|gcode|nc|txt)$/i.test(converted.filename || "");
-            sendBtn.disabled = !sendable;
+          const canUpload = Boolean(window.Cubiio2Device?.canUploadProject?.());
+          $("project-download").disabled = !ready || project.uploadingToSd;
+          const uploadBtn = $("project-upload-sd");
+          if (uploadBtn) {
+            const uploadable = ready && !project.uploadingToSd && converted.format !== "svg" && canUpload;
+            uploadBtn.disabled = !uploadable;
           }
+          if (ready) refreshExportStatusNote(converted);
         }
         function isAppleMobileOrBluefy() {
           const ua = navigator.userAgent || "";
@@ -12006,12 +12516,10 @@
           return "downloaded";
         }
         async function convertProject() {
-          project.conversionActivated = true;
           if (!project.layers.length) {
-            invalidateConversion("畫布沒有可轉檔的物件。");
+            invalidateConversion(ui("畫布沒有可轉檔的物件。"));
             return;
           }
-          const button = $("project-convert");
           const format = $("project-output-format").value;
           const threshold = Number($("project-threshold").value);
           window.Cubiio2Core.cancelCompute("project");
@@ -12020,7 +12528,6 @@
           const feedback = data => {
             if (current()) projectFeedback(data);
           };
-          button.disabled = true;
           setExportButtons(null);
           setUiText($("project-export-status"), () => format.startsWith("bmp") ? ui("正在轉換 BMP…") : ui("正在建立向量路徑…"));
           await new Promise(resolve => setTimeout(resolve, 20));
@@ -12054,7 +12561,6 @@
                 previewCanvas: previewCanvas,
                 revision: project.revision
               };
-              const rasterMode = bits === 1 ? ui(" · 0.1 mm/pixel（約 254 DPI）· Floyd–Steinberg 1-bit 灰階網點") : ui(" · 0.1 mm/pixel · 8-bit 灰階");
               converted.status = () => window.Cubiio2Core.pair("已轉檔 ", "Converted ") + result.width.toFixed(1) + " × " + result.height.toFixed(1) + " mm · " + window.Cubiio2Core.pair("8-bit BMP（置中雕刻）", "8-bit BMP (centered)") + " · " + (bits === 1 ? "Floyd–Steinberg" : "grayscale");
             } else {
               const options = currentVectorOptions();
@@ -12106,13 +12612,11 @@
                 })
               };
               const points = vector.paths.reduce((sum, path) => sum + path.length, 0);
-              const sourceStatus = nativePaths.length && rasterPaths.length ? ui` · 原生向量 ${nativePaths.length}／點陣追蹤 ${rasterPaths.length}` : nativePaths.length ? ui(" · 原生向量") : vector.options.centerline ? ui(" · 點陣中心線") : ui(" · 點陣輪廓");
               converted.status = () => window.Cubiio2Core.pair("已轉檔 ", "Converted ") + vector.paths.length + window.Cubiio2Core.pair(" 條路徑 · ", " paths · ") + points.toLocaleString() + window.Cubiio2Core.pair(" 個節點", " points") + (fillResult && !fillResult.closed ? " · " + ui("noClosed") : "") + (vector.routeStats ? " · " + ui("routeRapid") + " " + vector.routeStats.beforeMm.toFixed(1) + " → " + vector.routeStats.afterMm.toFixed(1) + " mm" : "");
             }
             if (!current()) return;
             project.converted = converted;
             setExportButtons(converted);
-            setUiText($("project-export-status"), () => converted.status());
             renderProject();
           } catch (error) {
             if (token !== conversionToken) return;
@@ -12121,7 +12625,6 @@
             setUiText($("project-export-status"), () => window.Cubiio2Core.explainError(error) || error.message || String(error));
           } finally {
             if (token === conversionToken) {
-              button.disabled = false;
               $("project-compute-status").hidden = true;
             }
           }
@@ -12130,14 +12633,17 @@
           project.converted = null;
           conversionToken++;
           window.Cubiio2Core.cancelCompute("project");
-          $("project-convert").disabled = false;
           $("project-compute-status").hidden = true;
           setExportButtons(null);
           $("project-converted-badge").dataset.visible = "false";
           renderProject();
-          if (!project.conversionActivated) return;
-          setUiText($("project-export-status"), () => ui("設定已變更，正在更新預覽…"));
           clearTimeout(conversionTimer);
+          if (project.activeTab !== "output") return;
+          if (!project.layers.length) {
+            setUiText($("project-export-status"), () => ui("畫布沒有可轉檔的物件。"));
+            return;
+          }
+          setUiText($("project-export-status"), () => ui("設定已變更，正在更新預覽…"));
           conversionTimer = setTimeout(convertProject, 240);
         }
         function updateOutputOptions() {
@@ -12165,6 +12671,89 @@
           }
         }
         document.querySelectorAll("[data-project-tab]").forEach(button => button.addEventListener("click", () => setProjectTab(button.dataset.projectTab)));
+        $("project-close-tool")?.addEventListener("click", () => setProjectTab(null));
+        $("project-position-reference")?.addEventListener("change", () => {
+          project.positionReference = $("project-position-reference").value === "lower-left" ? "lower-left" : "center";
+          updateLayerControls(true);
+        });
+        function updateShapeKindUi() {
+          const sidesRow = $("project-shape-sides-row");
+          if (sidesRow) sidesRow.hidden = $("project-shape-kind")?.value !== "polygon";
+        }
+        $("project-shape-kind")?.addEventListener("change", updateShapeKindUi);
+        updateShapeKindUi();
+        $("project-add-shape")?.addEventListener("click", () => {
+          const kind = $("project-shape-kind").value;
+          const width = Number($("project-shape-width").value);
+          const height = Number($("project-shape-height").value);
+          const sides = Number($("project-shape-sides").value);
+          if (!Number.isFinite(width) || !Number.isFinite(height) || width < 1 || width > 100 || height < 1 || height > 100 || (kind === "polygon" && (!Number.isFinite(sides) || sides < 3 || sides > 64))) {
+            setUiText($("project-live-status"), () => ui("請輸入有效尺寸（1～100 mm）與邊數（3～64）。"));
+            return;
+          }
+          const geom = window.Cubiio2Core.drawing.shape(kind, width, height, sides);
+          if (!geom) return;
+          const layer = {
+            id: project.nextId++,
+            type: "drawing",
+            nativeVector: "drawing",
+            name: geom.name,
+            x: 0,
+            y: 0,
+            width: geom.width,
+            height: geom.height,
+            rotation: 0,
+            paths: geom.paths
+          };
+          project.layers.push(layer);
+          markProjectChanged();
+          selectLayer(layer.id, true);
+        });
+        $("project-brush-activate")?.addEventListener("click", () => {
+          setProjectTab(null);
+          setBrushMode(true);
+        });
+        $("project-brush-finish")?.addEventListener("click", () => {
+          setBrushMode(false);
+        });
+        $("project-font-plus")?.addEventListener("click", () => {
+          $("project-import-font")?.click();
+        });
+        $("project-import-font")?.addEventListener("change", async event => {
+          const file = event.target.files?.[0];
+          event.target.value = "";
+          if (!file) return;
+          try {
+            const family = file.name.replace(/\.[^.]+$/, "").replace(/["'\\]/g, "").trim() || ("CustomFont_" + Date.now());
+            const face = new FontFace(family, await file.arrayBuffer());
+            await face.load();
+            document.fonts.add(face);
+            const select = $("project-font");
+            let opt = [ ...select.options ].find(o => o.value === family);
+            if (!opt) {
+              opt = document.createElement("option");
+              opt.value = family;
+              opt.textContent = family;
+              select.appendChild(opt);
+            }
+            select.value = family;
+            setUiText($("project-font-status"), () => ui("已匯入字型：") + family);
+          } catch (_) {
+            setUiText($("project-font-status"), () => ui("字型檔案無法載入。"));
+          }
+        });
+        window.Cubiio2Core.localFonts?.load().then(fonts => {
+          const select = $("project-font");
+          if (!select || !fonts?.length) return;
+          const existing = new Set([ ...select.options ].map(o => o.value.toLowerCase()));
+          for (const name of fonts) {
+            if (existing.has(name.toLowerCase())) continue;
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = name;
+            select.appendChild(opt);
+          }
+        }).catch(() => {});
         function syncProjectMachine() {
           project.machine = MACHINE;
         }
@@ -12222,7 +12811,12 @@
             id: project.nextId++,
             name: layer.name + " copy",
             x: Math.min(project.machine.maxX, Math.max(project.machine.minX, layer.x + 5)),
-            y: Math.min(project.machine.maxY, Math.max(project.machine.minY, layer.y + 5))
+            y: Math.min(project.machine.maxY, Math.max(project.machine.minY, layer.y + 5)),
+            paths: layer.paths ? layer.paths.map(p => {
+              const pts = p.map(pt => ({ ...pt }));
+              pts.closed = Boolean(p.closed);
+              return pts;
+            }) : undefined
           };
           project.layers.push(copy);
           markProjectChanged();
@@ -12259,9 +12853,9 @@
           syncFeedLimit();
           updateOutputOptions();
           updateLayerControls();
+          setExportButtons(project.converted);
           renderProject();
         });
-        $("project-convert").addEventListener("click", convertProject);
         $("project-download").addEventListener("click", async () => {
           if (!project.converted || project.converted.revision !== project.revision) return;
           const filename = resolveProjectFilename(project.converted.format);
@@ -12271,12 +12865,39 @@
             setUiText($("project-export-status"), () => ui`已下載 ${filename}`);
           }
         });
-        $("project-send-device")?.addEventListener("click", async () => {
-          if (!project.converted || project.converted.revision !== project.revision) return;
-          if (!window.Cubiio2Device?.loadLocalBlob) return;
+        $("project-upload-sd")?.addEventListener("click", async () => {
+          if (project.uploadingToSd || !project.converted || project.converted.revision !== project.revision) return;
+          if (project.converted.format === "svg") return;
+          if (!window.Cubiio2Device?.uploadProjectFile || !window.Cubiio2Device?.canUploadProject?.()) {
+            setUiText($("project-export-status"), () => ui("連接 Cubiio 後可上傳至 SD 卡。"));
+            return;
+          }
           const filename = resolveProjectFilename(project.converted.format);
           project.converted.filename = filename;
-          await window.Cubiio2Device.loadLocalBlob(project.converted.blob, filename);
+          project.uploadingToSd = true;
+          const transferBox = $("project-transfer");
+          const transferLabel = $("project-transfer-label");
+          const transferProgress = $("project-transfer-progress");
+          if (transferBox) transferBox.hidden = false;
+          if (transferProgress) transferProgress.value = 0;
+          setUiText(transferLabel, () => ui("正在上傳至 SD…"));
+          setExportButtons(project.converted);
+          try {
+            const res = await window.Cubiio2Device.uploadProjectFile(project.converted.blob, filename, info => {
+              if (transferProgress) transferProgress.value = Math.min(100, Math.max(0, info.percent));
+              setUiText(transferLabel, () => `${ui("已傳送 ")}${Math.round(info.percent)}% · ${(info.rate / 1024).toFixed(2)} KiB/s${info.tag ? ` (${info.tag})` : ""}`);
+            });
+            setUiText($("project-export-status"), () => `${ui("已儲存至 SD /CUBIIO/")}${res.remoteName} (${res.avgKib} KiB/s${res.tag ? `, ${res.tag}` : ""})`);
+          } catch (error) {
+            setUiText($("project-export-status"), () => window.Cubiio2Device?.errorText?.(error) || window.Cubiio2Core.explainError(error) || error.message || String(error));
+          } finally {
+            project.uploadingToSd = false;
+            if (transferBox) transferBox.hidden = true;
+            setExportButtons(project.converted);
+          }
+        });
+        $("project-transfer-cancel")?.addEventListener("click", () => {
+          window.Cubiio2Device?.cancelUpload?.();
         });
         new ResizeObserver(resizeProjectCanvas).observe(wrap);
         document.addEventListener("cubiio2-theme-change", renderProject);
@@ -12321,10 +12942,10 @@
             project.selectedId = value.selectedId;
             project.nextId = value.nextId;
             syncProjectMachine();
-            
             invalidateConversion();
             updateOutputOptions();
             updateLayerControls(true);
+            if (project.activeTab === "output") scheduleConversion();
             renderProject();
             baseline = snapshot();
             update();
@@ -12340,6 +12961,18 @@
           $("project-redo").addEventListener("click", () => travel(false));
           document.addEventListener("keydown", event => {
             if (document.querySelector('[data-page="project"]').hidden || document.querySelector("dialog[open]") || event.isComposing || event.target.closest?.('input,textarea,select,[contenteditable]:not([contenteditable="false"])')) return;
+            if (event.key === "Escape") {
+              if (project.brushActive) {
+                event.preventDefault();
+                setBrushMode(false);
+                return;
+              }
+              if (project.activeTab) {
+                event.preventDefault();
+                setProjectTab(null);
+                return;
+              }
+            }
             const cmd = event.ctrlKey || event.metaKey, keyName = event.key.toLowerCase();
             if (cmd && (keyName === "z" || keyName === "y")) {
               event.preventDefault();
@@ -12403,7 +13036,6 @@
           window.Cubiio2Core.cancelCompute("project");
           clearTimeout(conversionTimer);
           $("project-compute-status").hidden = true;
-          $("project-convert").disabled = false;
           project.converted = null;
           setExportButtons(null);
           setUiText($("project-export-status"), () => ui("運算已取消"));
@@ -12420,6 +13052,7 @@
             historyMachine = project.machine.name;
             historyController?.reset();
           }
+          setExportButtons(project.converted);
         });
         let historyMachine = project.machine.name;
         function renderBmpLimit() {
@@ -12432,6 +13065,7 @@
         historyController = installProjectHistory();
         syncFeedLimit();
         updateOutputOptions();
+        updateOutputSuffix();
         updateLayerControls();
         resizeProjectCanvas();
       })();
@@ -13157,6 +13791,15 @@
         document.addEventListener("cubiio2-language-change", () => {
           renderStepPreservingInputs();
         });
+      })();
+    </script>
+    <script id="cubiio-pwa-register">
+      (() => {
+        if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {});
+          });
+        }
       })();
     </script>
   </body>

@@ -1,0 +1,32 @@
+{
+  "name": "Cubiio WebApp V1.6",
+  "short_name": "Cubiio",
+  "description": "Cubiio laser engraver BLE control, 100×100 mm design canvas, live G-code/BMP export & USB firmware updater.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f7f7",
+  "theme_color": "#85D0D1",
+  "lang": "zh-Hant",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
